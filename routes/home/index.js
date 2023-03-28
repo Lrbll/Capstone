@@ -9,4 +9,6 @@ router.get("/", ctrl.main);
 
 router.get("/login", ctrl.login);
 
+router.get("/register", ctrl.register);
+
 module.exports = router;
