@@ -28,10 +28,10 @@
           </ul>
           <ul class="right_nav">
             <li>
-              <a href="/login">로그인</a>
+              <a href="signin.html">로그인</a>
             </li>
             <li>
-              <a href="/register">회원가입</a>
+              <a href="signup.html">회원가입</a>
             </li>
           </ul>
         </div>
@@ -39,8 +39,20 @@
       </nav>
     </header>
 
-    <!-- 섹션 영역 -->
-    <section class=""></section>
-    <script src="main.js"></script>
+    <!-- 회원가입 -->
+    <section class="main">
+      <h1>SIGNUP</h1>
+      <div class="register-page">
+        <div class="form">
+          <form class="register-form">
+            <input type="text" placeholder="이름"/>
+            <input type="text" placeholder="아이디"/>
+            <input type="password" placeholder="비밀번호"/>
+            <input type="confirm-password" placeholder="비밀번호 확인"/>
+            <input type="text" placeholder="email"/>
+            <button>create</button>
+            <p class="message">이미 회원이신가요? <a href="/signin.html">로그인</a></p>
+          </form>
+    </section>
   </body>
 </html>

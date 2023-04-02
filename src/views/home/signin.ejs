@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <script src="/js/home/signin.js" defer></script>
   </head>
   <body>
     <!-- 헤더 영역 -->
@@ -45,9 +45,9 @@
       <div class="login-page">
         <div class="form">
           <form class="login-form">
-            <input type="text" placeholder="아이디" />
-            <input type="password" placeholder="비밀번호" />
-            <button>login</button>
+            <input id="id" type="text" placeholder="아이디" />
+            <input id="password" type="password" placeholder="비밀번호" />
+            <button id="login_btn">login</button>
             <p class="message">
               아직 회원이 아니신가요? <a href="/signup.html">회원가입</a>
             </p>
@@ -55,6 +55,5 @@
         </div>
       </div>
     </section>
-    <script src="main.js"></script>
   </body>
 </html>
