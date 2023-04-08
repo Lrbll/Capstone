@@ -7,8 +7,15 @@ class UserStorge {
     name: ["하이"],
   };
 
-  static getUsers() {
-    return this._users;
+  static getUsers(...fields) {
+    const users = this._users;
+    const newUsers = fields.reduce((newUsers, field) => {
+      if (users.hasOwnProperty(field)) {
+        newUsers[field] = users[field];
+      }
+      return newUsers;
+    }, {});
+    return newUsers;
   }
 }
 
