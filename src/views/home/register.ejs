@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/css/home/login.css" />
+    <script src="/js/home/register.js" defer></script>
   </head>
   <body>
     <!-- 헤더 영역 -->
@@ -39,20 +40,28 @@
       </nav>
     </header>
 
-    <!-- 회원가입 -->
+    <!-- 섹션 영역 -->
     <section class="main">
-      <h1>SIGNUP</h1>
-      <div class="register-page">
+      <div class="login-page">
         <div class="form">
-          <form class="register-form">
-            <input type="text" placeholder="이름"/>
-            <input type="text" placeholder="아이디"/>
-            <input type="password" placeholder="비밀번호"/>
-            <input type="confirm-password" placeholder="비밀번호 확인"/>
-            <input type="text" placeholder="email"/>
-            <button>create</button>
-            <p class="message">이미 회원이신가요? <a href="/signin.html">로그인</a></p>
+          <form class="login-form">
+            <input id="id" type="text" placeholder="아이디" />
+            <input id="name" type="password" placeholder="이름" />
+            <input id="password" type="password" placeholder="비밀번호" />
+            <input
+              id="confirm_password"
+              type="password"
+              placeholder="비밀번호 확인"
+            />
+            <!-- <input id="password" type="password" placeholder="Email" />
+            <input id="password" type="password" placeholder="인증번호" /> -->
+            <p id="button">create</p>
+            <p class="message">
+              Already registered? <a href="/login">Login</a>
+            </p>
           </form>
+        </div>
+      </div>
     </section>
   </body>
 </html>

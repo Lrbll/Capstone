@@ -8,11 +8,11 @@ const output = {
   },
 
   login: (req, res) => {
-    res.render("home/signin");
+    res.render("home/login");
   },
 
   register: (req, res) => {
-    res.render("home/signup");
+    res.render("home/register");
   },
 };
 
