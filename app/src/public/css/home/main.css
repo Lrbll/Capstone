@@ -1,8 +1,21 @@
-.navbar {
-  display: flex;
+/* * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+} */
+
+a {
+  text-decoration: none;
 }
 
-.navbar .menu {
-  list-style: none;
-  float: left;
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+header {
+  background-color: lemonchiffon;
+}
+
+.navbar {
 }
