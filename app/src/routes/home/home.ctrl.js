@@ -14,6 +14,22 @@ const output = {
   register: (req, res) => {
     res.render("home/register");
   },
+
+  diagnostics: (req, res) => {
+    res.render("home/diagnostics");
+  },
+
+  list: (req, res) => {
+    res.render("home/list");
+  },
+
+  info: (req, res) => {
+    res.render("home/info");
+  },
+
+  mypage: (req, res) => {
+    res.render("home/mypage");
+  },
 };
 
 const process = {
