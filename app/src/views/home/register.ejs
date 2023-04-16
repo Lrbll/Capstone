@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>noweakness_로그인</title>
+    <title>noweakness</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/home/login.css" />
     <script src="/js/home/register.js" defer></script>
@@ -34,7 +34,7 @@
     </header>
 
     <!-- 섹션 영역 -->
-    <section class="main">
+    <!-- <section class="main">
       <div class="login-page">
         <div class="form">
           <form class="login-form">
@@ -46,13 +46,114 @@
               type="password"
               placeholder="비밀번호 확인"
             />
-            <!-- <input id="password" type="password" placeholder="Email" />
-            <input id="password" type="password" placeholder="인증번호" /> -->
+            <input id="password" type="password" placeholder="Email" />
+            <input id="password" type="password" placeholder="인증번호" />
             <p id="button">create</p>
             <p class="message">
               Already registered? <a href="/login">Login</a>
             </p>
           </form>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="bg-gray-50">
+      <div
+        class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+      >
+        <div
+          class="w-full bg-white rounded-lg shadow md:mt-20 sm:max-w-md xl:p-0"
+        >
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1
+              class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+            >
+              Sign up to your account
+            </h1>
+            <form class="space-y-4 md:space-y-6" action="#">
+              <div>
+                <input
+                  type="text"
+                  id="id"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  placeholder="아이디"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  id="name"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  placeholder="이름"
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  id="password"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  placeholder="비밀번호"
+                />
+              </div>
+              <div>
+                <input
+                  type="password"
+                  id="confirm_password"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  placeholder="비밀번호 재확인"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  placeholder="email"
+                />
+              </div>
+
+              <!-- <div class="flex items-center justify-between">
+                <div class="flex items-start">
+                  <div class="flex items-center h-5">
+                    <input
+                      id="remember"
+                      aria-describedby="remember"
+                      type="checkbox"
+                      class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                      required=""
+                    />
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label
+                      for="remember"
+                      class="text-gray-500 dark:text-gray-300"
+                      >Remember me</label
+                    >
+                  </div>
+                </div>
+                <a
+                  href="#"
+                  class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >Forgot password?</a
+                >
+              </div> -->
+              <p
+                type="submit"
+                id="button"
+                class="w-full text-white bg-green-700 hover:bg-green-900 focus:ring-2 focus:ring-green-500 rounded-lg text-sm px-5 py-2.5 text-center"
+              >
+                회원 가입
+              </p>
+              <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                이미 계정이 있으신가요?
+                <a
+                  href="/login"
+                  class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >로그인</a
+                >
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </section>
