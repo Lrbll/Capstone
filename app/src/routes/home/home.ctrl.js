@@ -30,6 +30,10 @@ const output = {
   mypage: (req, res) => {
     res.render("home/mypage");
   },
+
+  test: (req, res) => {
+    res.render("home/test");
+  },
 };
 
 const process = {
