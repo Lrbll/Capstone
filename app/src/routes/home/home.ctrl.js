@@ -1,5 +1,7 @@
 "use strict";
 
+//
+
 const User = require("../../models/User");
 
 const output = {
@@ -27,8 +29,8 @@ const output = {
     res.render("home/info");
   },
 
-  mypage: (req, res) => {
-    res.render("home/mypage");
+  result: (req, res) => {
+    res.render("home/result");
   },
 
   test: (req, res) => {
@@ -44,9 +46,9 @@ const process = {
     return res.json(response);
   },
 
-  register: (req, res) => {
+  register: async (req, res) => {
     const user = new User(req.body);
-    const response = user.register();
+    const response = await user.register();
     console.log(response);
     return res.json(response);
   },

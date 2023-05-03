@@ -11,7 +11,7 @@ router.get("/register", ctrl.output.register);
 router.get("/diagnostics", ctrl.output.diagnostics);
 router.get("/list", ctrl.output.list);
 router.get("/info", ctrl.output.info);
-router.get("/mypage", ctrl.output.mypage);
+router.get("/result", ctrl.output.result);
 router.get("/test", ctrl.output.test);
 
 router.post("/login", ctrl.process.login);

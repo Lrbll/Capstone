@@ -1,11 +1,11 @@
 "use strict";
+// ID 태그(#)로 구분된 데이터를 id, name, password ~~의 이름을 가진 변수로 지정
 
 const id = document.querySelector("#id"),
   name = document.querySelector("#name"),
   password = document.querySelector("#password"),
   confirm_password = document.querySelector("#confirm_password"),
   register_btn = document.querySelector("#button");
-console.log("hello register");
 register_btn.addEventListener("click", register);
 
 function register() {

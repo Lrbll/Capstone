@@ -1,20 +1,18 @@
 "use strict";
 // ID 태그(#)로 구분된 데이터를 id, name, password ~~의 이름을 가진 변수로 지정
 
-const id = document.querySelector("#id"),
-  password = document.querySelector("#password"),
-  login_btn = document.querySelector("#button");
+const url = document.querySelector("#url"),
+  service_btn = document.querySelector("#button");
 
-login_btn.addEventListener("click", login);
+service_btn.addEventListener("click", service);
 
 //login() 이라는 함수가 id와 password를 요구하도록 함
-function login() {
+function service() {
   const req = {
-    id: id.value,
-    password: password.value,
+    url: url.value,
   };
 
-  fetch("/login", {
+  fetch("/diagnostics", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,12 +22,12 @@ function login() {
     .then((res) => res.json())
     .then((res) => {
       if (res.success) {
-        location.href = "/";
+        location.href = "/result";
       } else {
         alert(res.msg);
       }
     })
     .catch((err) => {
-      console.error(new Error("로그인 중 오류가 발생하였습니다."));
+      console.error(new Error("URL 조회 중 오류가 발생하였습니다."));
     });
 }

@@ -27,7 +27,7 @@
 
   <body class="leading-normal tracking-normal text-white gradient">
     <!-- 헤더 영역 -->
-    <header class="fixed w-full shadow-md">
+    <header class="fixed w-full shadow-md z-10">
       <nav class="bg-white border-gray-200 py-2.5">
         <div
           class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto"
@@ -89,9 +89,9 @@
               </li>
               <li>
                 <a
-                  href="/mypage"
+                  href="/result"
                   class="block py-2 pl-3 pr-3 text-xl text-gray-900 hover:text-green-700 hover:transition-all hover:duration-300"
-                  >마이페이지</a
+                  >진단결과</a
                 >
               </li>
             </ul>
@@ -113,20 +113,23 @@
             웹사이트의 보안이 걱정되시나요?
           </p>
           <h1 class="my-4 text-5xl font-bold leading-tight">
-            웹 취약점을 진단하고 보안을 강화해보세요!
+            웹 취약점을 진단하고 <br />
+            보안을 강화해보세요!
           </h1>
+          <button
+            type="button"
+            onclick="location.href='/diagnostics'"
+            class="mx-auto lg:mx-0 hover:underline hover:underline-offset-2 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+          >
+            웹 취약점 진단
+          </button>
           <p class="leading-normal text-2xl mb-8">
             noweakness가 이메일로 결과를 보내드릴게요
           </p>
-          <button
-            class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-          >
-            진단서비스
-          </button>
         </div>
         <!--Right Col-->
         <div class="w-full md:w-3/5 py-6 text-center">
-          <img class="w-full md:w-4/5 z-50" src="hero.png" />
+          <!-- <img class="w-full md:w-4/5 z-50" src="hero.png" /> -->
         </div>
       </div>
     </div>
@@ -187,186 +190,171 @@
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                SOL Injection
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                관리자 페이지 노출
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                Directory Listing
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                PHP Code Injection
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                XSS
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                세션 고정 취약점
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                CSRF
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                약한 문자열 강도
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                LDAP Injection
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Lorem ipsum dolor sit amet
+                XML/XPATH Injection
               </h3>
               <p class="text-gray-600 mb-8">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                <br />
-                <br />
-                Images from:
-
-                <a class="text-pink-500 underline" href="https://undraw.co/"
-                  >undraw.co</a
-                >
               </p>
             </div>
+          </div>
+          <div class="w-full sm:w-1/2 p-6 mt-6">
+            <div class="align-middle">
+              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                Broken Auth
+              </h3>
+              <p class="text-gray-600 mb-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                at ipsum eu nunc commodo posuere et sit amet ligula.
+              </p>
+            </div>
+          </div>
+          <div class="w-full sm:w-1/2 p-6 mt-6">
+            <div class="align-middle">
+              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                Insecure DOR
+              </h3>
+              <p class="text-gray-600 mb-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                at ipsum eu nunc commodo posuere et sit amet ligula.
+              </p>
+            </div>
+          </div>
+          <div class="w-full sm:w-1/2 p-6 mt-6">
+            <div class="align-middle">
+              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                Base64 Encoding
+              </h3>
+              <p class="text-gray-600 mb-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                at ipsum eu nunc commodo posuere et sit amet ligula.
+              </p>
+            </div>
+          </div>
+          <div class="w-full sm:w-1/2 p-6 mt-6">
+            <div class="align-middle">
+              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                Restrict Folder Access
+              </h3>
+              <p class="text-gray-600 mb-8">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                at ipsum eu nunc commodo posuere et sit amet ligula.
+              </p>
+            </div>
+          </div>
+          <div class="w-full flex justify-center items-center p-6 mt-6">
+            <button
+              type="button"
+              onclick="location.href='/list'"
+              class="mx-auto text-center lg:mx-0 bg-green-700 text-white font-bold rounded-full my-3 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+            >
+              점검항목 더보기
+            </button>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- 뭘 넣을지 고민 중 -->
     <section class="bg-white border-b py-8">
       <div class="container mx-auto flex flex-wrap pt-4 pb-12">
         <h2
@@ -632,9 +620,11 @@
       </div>
       <h3 class="my-4 text-3xl leading-tight">진단도구 개발 + 웹 사이트제작</h3>
       <button
-        class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+        type="button"
+        onclick="location.href='/info'"
+        class="mx-auto lg:mx-0 hover:underline hover:underline-offset-2 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
       >
-        프로젝트 보러가기
+        프로젝트 소개
       </button>
     </section>
     <!--Footer-->
@@ -678,9 +668,9 @@
           </div>
           <div class="flex-1">
             <a
-              href="/mypage"
+              href="/result"
               class="text-gray-900 hover:text-green-700 md:mb-6 no-underline hover:underline hover:underline-offset-2"
-              >마이페이지</a
+              >진단결과</a
             >
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:ml-0">
