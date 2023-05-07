@@ -37,31 +37,33 @@ const output = {
 const process = {
   login: (req, res) => {
     let db = require("../../config/db");
-    //    let bcrypt = require("bcrypt");
-    let { id, pw } = req.body;
+    var id = req.body.id;
+    var pw = req.body.pw;
     // db에서 사용자가 입력한 아이디를 조회한다.
-    db.mysql.query("SELECT * FROM users WHERE id=?", id, (err, users) => {
-      // 만약 사용자 정보가 입력한 아이디가 존재하지 않은 경우 에러메세지를 보여준다.
-      if (err || !users[0]) {
-        res.send(
-          "<script>alert('존재하지 않는 아이디 입니다.'); window.location.replace('/login');</script>"
-        );
-      }
-      /* 사용자가 입력한 비밀번호와 db에 암호화 되어있는 비밀번호를 비교해서 참이면 로그인
-         아니면 에러메세지를 띄어준다. */
-      bcrypt.compare(pw, users[0].pw, (err, tf) => {
-        if (tf !== true) {
-          res.send(
-            "<script>alert('일치하지 않는 비밀번호 입니다.'); window.location.replace('/login');</script>"
-          );
-        } else {
-          /* 로그인 성공시 session에 is_logined라는 변수에 true값을 저장한다.
-             true 값을 저장하는 이유는 만약 로그인 상태가 아닐경우 로그인 페이지로 이동되게하게끔 하기위해 만든 변수다. */
-          req.session.is_logined = true;
-          return res.redirect("/");
+    if (id && pw) {
+      // id와 pw가 입력되었는지 확인
+      db.mysql.query(
+        "SELECT * FROM users WHERE id = ? AND pw = ?",
+        [id, pw],
+        function (error, results, fields) {
+          if (error) throw error;
+          if (results.length > 0) {
+            // db에서의 반환값이 있으면 로그인 성공
+            req.session.is_logined = true; // 세션 정보 갱신
+            req.session.nickname = id;
+            req.session.save(function () {
+              res.redirect(`/`);
+            });
+          } else {
+            res.send(`<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); 
+              document.location.href="/login";</script>`);
+          }
         }
-      });
-    });
+      );
+    } else {
+      res.send(`<script type="text/javascript">alert("아이디와 비밀번호를 입력하세요!"); 
+      document.location.href="/login";</script>`);
+    }
   },
 
   /* /logout으로 post요청이 오면 로그인 상태를 해제한다.  */
@@ -71,27 +73,46 @@ const process = {
   //   });
   // });
 
-  register: (req, res, next) => {
+  register: (req, res) => {
     let db = require("../../config/db");
-    //    let bcrypt = require("bcrypt");
-    // 사용자가 웹 페이지에서 입력한 id, pw를 id, pw 라는 변수로 저장한다.
-    let { id, pw } = req.body;
-    // 비밀번호를 암호화 한다.(bcrypt에서 지원하는 hashSync라는 함수로 암호화)
-    //    pw = bcrypt.hashSync(pw);
-    // db에 저장하는 기능
-    let sql = { id, pw };
-    db.mysql.query("INSERT INTO users set ?", sql, (err) => {
-      // err에서는 입력한 아이디가 이미 db상에서 존재하는 경우에 발생한다.
-      if (err) {
-        console.log(err);
-        res.send(
-          "<script>alert('이미 존재하는 아이디 입니다.'); window.location.replace('/register');</script>"
-        );
-      } else {
-        // 아이디가 db에 저장되어 있지 않는 경우라면 회원가입을 완료한뒤에 로그인페이지로 이동한다.
-        return res.redirect("/login");
-      }
-    });
+    var id = req.body.id;
+    var pw = req.body.pw;
+    var confirm_pw = req.body.confirm_pw;
+
+    if (id && pw && confirm_pw) {
+      db.mysql.query(
+        "SELECT * FROM users WHERE id = ?",
+        [id],
+        function (error, results, fields) {
+          // DB에 같은 이름의 회원아이디가 있는지 확인
+          if (error) throw error;
+          if (results.length <= 0 && pw == confirm_pw) {
+            // DB에 같은 이름의 회원아이디가 없고, 비밀번호가 올바르게 입력된 경우
+            db.mysql.query(
+              "INSERT INTO users (id, pw) VALUES(?,?)",
+              [id, pw],
+              function (error, data) {
+                if (error) throw error2;
+                res.send(`<script type="text/javascript">alert("회원가입이 완료되었습니다!");
+                    document.location.href="/";</script>`);
+              }
+            );
+          } else if (pw != confirm_pw) {
+            // 비밀번호가 올바르게 입력되지 않은 경우
+            res.send(`<script type="text/javascript">alert("입력된 비밀번호가 서로 다릅니다."); 
+                document.location.href="/register";</script>`);
+          } else {
+            // DB에 같은 이름의 회원아이디가 있는 경우
+            res.send(`<script type="text/javascript">alert("이미 존재하는 아이디 입니다."); 
+                document.location.href="/register";</script>`);
+          }
+        }
+      );
+    } else {
+      // 입력되지 않은 정보가 있는 경우
+      res.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
+        document.location.href="/register";</script>`);
+    }
   },
 };
 
