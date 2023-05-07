@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>noweakness</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/js/home/register.js" defer></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap");
       body {
@@ -33,29 +32,6 @@
     </header>
 
     <!-- 섹션 영역 -->
-    <!-- <section class="main">
-      <div class="login-page">
-        <div class="form">
-          <form class="login-form">
-            <input id="id" type="text" placeholder="아이디" />
-            <input id="name" type="password" placeholder="이름" />
-            <input id="password" type="password" placeholder="비밀번호" />
-            <input
-              id="confirm_password"
-              type="password"
-              placeholder="비밀번호 확인"
-            />
-            <input id="password" type="password" placeholder="Email" />
-            <input id="password" type="password" placeholder="인증번호" />
-            <p id="button">create</p>
-            <p class="message">
-              Already registered? <a href="/login">Login</a>
-            </p>
-          </form>
-        </div>
-      </div>
-    </section> -->
-
     <section class="bg-gray-50">
       <div
         class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
@@ -69,80 +45,58 @@
             >
               Sign up to your account
             </h1>
-            <form class="space-y-4 md:space-y-6" action="#">
+            <!-- register 라우터로 post요청 보냄 -->
+            <form
+              class="space-y-4 md:space-y-6"
+              action="/register"
+              method="post"
+            >
               <div>
                 <input
                   type="text"
-                  id="id"
+                  name="id"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="아이디"
                 />
               </div>
-              <div>
+              <!-- <div>
                 <input
                   type="text"
-                  id="name"
+                  name="name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="이름"
                 />
-              </div>
+              </div> -->
               <div>
                 <input
                   type="password"
-                  id="password"
+                  name="pw"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="비밀번호"
                 />
               </div>
-              <div>
+              <!-- <div>
                 <input
                   type="password"
-                  id="confirm_password"
+                  name="confirm_pw"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="비밀번호 확인"
+                  placeholder="비밀번호 재확인"
                 />
               </div>
               <div>
                 <input
                   type="email"
-                  id="email"
+                  name="email"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="email"
                 />
-              </div>
-
-              <!-- <div class="flex items-center justify-between">
-                <div class="flex items-start">
-                  <div class="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required=""
-                    />
-                  </div>
-                  <div class="ml-3 text-sm">
-                    <label
-                      for="remember"
-                      class="text-gray-500 dark:text-gray-300"
-                      >Remember me</label
-                    >
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >Forgot password?</a
-                >
               </div> -->
-              <p
+              <button
                 type="submit"
-                id="button"
                 class="w-full text-white bg-green-700 hover:bg-green-900 focus:ring-2 focus:ring-green-500 rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 회원 가입
-              </p>
+              </button>
               <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                 이미 계정이 있으신가요?
                 <a
