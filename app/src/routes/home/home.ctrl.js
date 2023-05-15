@@ -9,6 +9,10 @@ const output = {
     res.render("home/login");
   },
 
+  logout: (req, res) => {
+    res.render("home/logout");
+  },
+
   register: (req, res) => {
     res.render("home/register");
   },
@@ -34,9 +38,10 @@ const output = {
   },
 };
 
+let db = require("../../config/db");
+
 const process = {
   login: (req, res) => {
-    let db = require("../../config/db");
     var id = req.body.id;
     var pw = req.body.pw;
     // db에서 사용자가 입력한 아이디를 조회한다.
@@ -67,14 +72,13 @@ const process = {
   },
 
   /* /logout으로 post요청이 오면 로그인 상태를 해제한다.  */
-  // router.post("/logout", (req, res, next) => {
-  //   req.session.destroy((err) => {
-  //     return res.redirect("/");
-  //   });
-  // });
+  logout: (req, res) => {
+    req.session.destroy(function (err) {
+      res.redirect("/");
+    });
+  },
 
   register: (req, res) => {
-    let db = require("../../config/db");
     var id = req.body.id;
     var pw = req.body.pw;
     var confirm_pw = req.body.confirm_pw;
@@ -112,6 +116,28 @@ const process = {
       // 입력되지 않은 정보가 있는 경우
       res.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
         document.location.href="/register";</script>`);
+    }
+  },
+
+  saveUrl: (req, res) => {
+    var url = req.body.url;
+
+    if (url) {
+      db.mysql.query(
+        "INSERT INTO service (url) VALUES (?)",
+        [url],
+        function (error, data) {
+          if (error) {
+            // 데이터베이스 쿼리 에러 처리
+            throw error;
+          }
+          res.send(`<script type="text/javascript">alert("URL이 저장되었습니다!");
+          document.location.href="/diagnostics";</script>`);
+        }
+      );
+    } else {
+      res.send(`<script type="text/javascript">alert("URL을 입력하세요!"); 
+      document.location.href="/diagnostics";</script>`);
     }
   },
 };

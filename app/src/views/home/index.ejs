@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>noweakness</title>
+    <script src="/js/home/authCheck.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/src/public/js/home/main.js"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap");
       body {
@@ -78,13 +78,6 @@
                   href="/list"
                   class="block py-2 pl-3 pr-3 text-xl text-gray-900 hover:text-green-700 hover:transition-all hover:duration-300"
                   >점검항목</a
-                >
-              </li>
-              <li>
-                <a
-                  href="/info"
-                  class="block py-2 pl-3 pr-3 text-xl text-gray-900 hover:text-green-700 hover:transition-all hover:duration-300"
-                  >소개</a
                 >
               </li>
               <li>
@@ -611,20 +604,22 @@
       <h2
         class="w-full my-2 text-5xl font-bold leading-tight text-center text-white"
       >
-        웹 취약점 진단 사이트
+        '진단 결과'를 다시 보고싶다면?
       </h2>
       <div class="w-full mb-4">
         <div
           class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"
         ></div>
       </div>
-      <h3 class="my-4 text-3xl leading-tight">진단도구 개발 + 웹 사이트제작</h3>
+      <h3 class="my-4 text-3xl leading-tight">
+        과거 진단이력과 대응방안을 확인해보세요
+      </h3>
       <button
         type="button"
-        onclick="location.href='/info'"
+        onclick="location.href='/result'"
         class="mx-auto lg:mx-0 hover:underline hover:underline-offset-2 bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
       >
-        프로젝트 소개
+        보러가기
       </button>
     </section>
     <!--Footer-->
