@@ -39,6 +39,16 @@ app.get("/", (req, res, next) => {
   }
 });
 
+app.get("/login", (req, res, next) => {
+  if (authCheck.isOwner(req, res)) {
+    // 로그인 안되어있으면 로그인 페이지로 이동시킴
+    res.redirect("/logout");
+    return false;
+  } else {
+    next();
+  }
+});
+
 app.use("/", home);
 
 module.exports = app;
