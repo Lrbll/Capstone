@@ -129,10 +129,11 @@
               <div
                 class="w-full font-bold text-xl text-gray-800 px-6 pt-5 pt-5"
               >
-                사전 준비
+                사전준비
               </div>
               <p class="text-gray-800 text-base px-6 mb-5 pt-5">
-                웹 사이트 url 입력
+                로그인<br>
+                본인 인증
               </p>
             </a>
           </div>
@@ -146,11 +147,10 @@
                 02
               </p>
               <div class="w-full font-bold text-xl text-gray-800 px-6 pt-5">
-                진단이력 조회
+              URL 조회
               </div>
               <p class="text-gray-800 text-base px-6 mb-5 pt-5">
-                과거 진단이력 조회<br />
-                진행 여부 선택
+                웹 사이트 URL 입력
               </p>
             </a>
           </div>
@@ -167,9 +167,8 @@
                 진단 진행
               </div>
               <p class="text-gray-800 text-base px-6 mb-5 pt-5">
-                도구 실행<br />
-                진단 결과분석<br />
-                취약점 보완 대책 제시
+                도구 실행<br>
+                웹 취약점 진단
               </p>
             </a>
           </div>
@@ -183,10 +182,11 @@
                 04
               </p>
               <div class="w-full font-bold text-xl text-gray-800 px-6 pt-5">
-                결과 비교
+                진단 결과
               </div>
               <p class="text-gray-800 text-base px-6 mb-5 pt-5">
-                최근 진단이력 비교
+                진단 결과분석<br />
+                취약점 보완 대책 제시
               </p>
             </a>
           </div>
@@ -203,8 +203,8 @@
                 결과 발송
               </div>
               <p class="text-gray-800 text-base px-6 mb-5 pt-5">
-                pdf 형식으로<br />
-                파일 저장 혹은<br />
+                pdf 저장<br>
+                or<br>
                 email 발송
               </p>
             </a>
@@ -232,7 +232,7 @@
             <p class="text-gray-800 text-base px-6 mb-5 pt-5 text-center">
               <b>점검할 웹 사이트의 URL을 입력해주세요</b>
               <br>
-              과거 진단이력이 있는 경우, 진행여부를 선택해주세요
+              로그인 후, 진단 서비스를 이용할 수 있습니다
             </p>
             <form class="space-y-4 md:space-y-6" action="/diagnostics" method="post">
               <div>
@@ -373,20 +373,22 @@
     </section> -->
     <section class="container mx-auto text-center py-6 mb-12">
       <h2
-        class="w-full my-2 text-5xl font-bold leading-tight text-center text-white"
+        class="w-full my-2 text-5xl font-bold leading-tight text-center text-white mt-14"
       >
-        웹 취약점 진단 사이트
+      '진단 결과'를 다시 보고싶다면?
       </h2>
       <div class="w-full mb-4">
         <div
-          class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"
+          class="h-1 mx-auto bg-white w-1/2 opacity-25 my-0 py-0 rounded-t"
         ></div>
       </div>
-      <h3 class="my-4 text-3xl leading-tight">진단도구 개발 + 웹 사이트제작</h3>
+      <h3 class="my-4 text-3xl leading-tight">과거 진단이력과 대응방안을 확인해보세요</h3>
       <button
+        type="button"
+        onclick="location.href='/result'"
         class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
       >
-        프로젝트 보러가기
+        진단결과 보러가기
       </button>
     </section>
     <!--Footer-->
@@ -409,10 +411,10 @@
             >
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:ml-0">
-                <p class="text-gray-500">진단 도구</p>
+                <p class="text-gray-500">진단도구</p>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:ml-0">
-                <p class="text-gray-500">웹 서비스</p>
+                <p class="text-gray-500">웹서비스</p>
               </li>
             </ul>
           </div>
@@ -420,11 +422,11 @@
             <a
               href="/list"
               class="text-gray-900 hover:text-green-700 md:mb-6 no-underline hover:underline hover:underline-offset-2"
-              >점검 항목</a
+              >점검항목</a
             >
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:ml-0">
-                <p class="text-gray-500">웹 취약점</p>
+                <p class="text-gray-500">웹취약점</p>
               </li>
             </ul>
           </div>
@@ -436,10 +438,10 @@
             >
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:ml-0">
-                <p class="text-gray-500">진단 결과</p>
+                <p class="text-gray-500">진단결과</p>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:ml-0">
-                <p class="text-gray-500">정보 수정</p>
+                <p class="text-gray-500">대응방안</p>
               </li>
             </ul>
           </div>
@@ -447,17 +449,14 @@
             <a
               href="/info"
               class="text-gray-900 hover:text-green-700 md:mb-6 no-underline hover:underline hover:underline-offset-2"
-              >프로젝트</a
+              >소개</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
-                <p class="text-gray-500">Project</p>
-              </li>
               <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">About</p>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:ml-0">
-                <p class="text-gray-500">Contact</p>
+                <p class="text-gray-500">Project</p>
               </li>
             </ul>
           </div>

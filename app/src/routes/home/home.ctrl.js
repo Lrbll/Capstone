@@ -66,7 +66,7 @@ const process = {
         }
       );
     } else {
-      res.send(`<script type="text/javascript">alert("아이디와 비밀번호를 입력하세요!"); 
+      res.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
       document.location.href="/login";</script>`);
     }
   },
@@ -97,13 +97,13 @@ const process = {
               [id, pw],
               function (error, data) {
                 if (error) throw error2;
-                res.send(`<script type="text/javascript">alert("회원가입이 완료되었습니다!");
+                res.send(`<script type="text/javascript">alert("회원가입이 완료되었습니다.");
                     document.location.href="/";</script>`);
               }
             );
           } else if (pw != confirm_pw) {
             // 비밀번호가 올바르게 입력되지 않은 경우
-            res.send(`<script type="text/javascript">alert("입력된 비밀번호가 서로 다릅니다."); 
+            res.send(`<script type="text/javascript">alert("비밀번호가 일치하지 않습니다."); 
                 document.location.href="/register";</script>`);
           } else {
             // DB에 같은 이름의 회원아이디가 있는 경우
@@ -131,12 +131,12 @@ const process = {
             // 데이터베이스 쿼리 에러 처리
             throw error;
           }
-          res.send(`<script type="text/javascript">alert("URL이 저장되었습니다!");
+          res.send(`<script type="text/javascript">alert("URL이 저장되었습니다.");
           document.location.href="/diagnostics";</script>`);
         }
       );
     } else {
-      res.send(`<script type="text/javascript">alert("URL을 입력하세요!"); 
+      res.send(`<script type="text/javascript">alert("URL을 입력해주세요."); 
       document.location.href="/diagnostics";</script>`);
     }
   },

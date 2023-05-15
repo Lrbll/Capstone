@@ -29,10 +29,11 @@ app.use(
   })
 );
 
-app.get("/", (req, res, next) => {
+app.post("/diagnostics", (req, res, next) => {
   if (!authCheck.isOwner(req, res)) {
     // 로그인 안되어있으면 로그인 페이지로 이동시킴
-    res.redirect("/login");
+    res.send(`<script type="text/javascript">alert("로그인 후, 이용할 수 있습니다."); 
+              document.location.href="/login";</script>`);
     return false;
   } else {
     next();
