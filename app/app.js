@@ -9,6 +9,7 @@ const FileStore = require("session-file-store")(session);
 
 //라우팅
 const home = require("./src/routes/home");
+const auth = require("./src/routes/auth/auth");
 var authCheck = require("./src/public/js/home/authCheck.js");
 
 //앱세팅
@@ -33,17 +34,17 @@ app.post("/diagnostics", (req, res, next) => {
   if (!authCheck.isOwner(req, res)) {
     // 로그인 안되어있으면 로그인 페이지로 이동시킴
     res.send(`<script type="text/javascript">alert("로그인 후, 이용할 수 있습니다."); 
-              document.location.href="/login";</script>`);
+              document.location.href="/auth/login";</script>`);
     return false;
   } else {
     next();
   }
 });
 
-app.get("/login", (req, res, next) => {
+app.get("/auth/login", (req, res, next) => {
   if (authCheck.isOwner(req, res)) {
     // 로그인 안되어있으면 로그인 페이지로 이동시킴
-    res.redirect("/logout");
+    res.redirect("/auth/logout");
     return false;
   } else {
     next();
@@ -51,5 +52,6 @@ app.get("/login", (req, res, next) => {
 });
 
 app.use("/", home);
+app.use("/auth", auth);
 
 module.exports = app;

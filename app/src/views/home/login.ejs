@@ -44,7 +44,11 @@
               Sign in to your account
             </h1>
             <!-- login 라우터로 post요청 보냄 -->
-            <form class="space-y-4 md:space-y-6" action="/login" method="post">
+            <form
+              class="space-y-4 md:space-y-6"
+              action="/auth/login"
+              method="post"
+            >
               <div>
                 <input
                   type="text"
@@ -70,7 +74,7 @@
               <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                 아직 계정이 없으신가요?
                 <a
-                  href="/register"
+                  href="/auth/register"
                   class="text-sm hover:underline hover:underline-offset-2"
                   >회원가입</a
                 >
