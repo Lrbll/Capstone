@@ -18,6 +18,7 @@ router.get("/test", ctrl.output.test);
 router.post("/login", ctrl.process.login);
 router.post("/logout", ctrl.process.logout);
 router.post("/register", ctrl.process.register);
+router.post("/diagnostics", ctrl.process.confirmLogin);
 router.post("/diagnostics", ctrl.process.saveUrl);
 
 module.exports = router;

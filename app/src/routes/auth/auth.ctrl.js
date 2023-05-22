@@ -1,5 +1,7 @@
 "use strict";
 
+var authCheck = require("../../../src/public/js/home/authCheck.js");
+
 const output = {
   login: (req, res) => {
     res.render("home/login");
@@ -92,6 +94,16 @@ const process = {
       // 입력되지 않은 정보가 있는 경우
       res.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
         document.location.href="/auth/register";</script>`);
+    }
+  },
+
+  confirmLogin: (req, res, next) => {
+    if (authCheck.isOwner(req, res)) {
+      // 로그인 안되어있으면 로그인 페이지로 이동시킴
+      res.redirect("/auth/logout");
+      return false;
+    } else {
+      next();
     }
   },
 };

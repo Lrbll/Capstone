@@ -1,5 +1,7 @@
 "use strict";
 
+var authCheck = require("../../../src/public/js/home/authCheck.js");
+
 const output = {
   home: (req, res) => {
     res.render("home/index");
@@ -138,6 +140,17 @@ const process = {
     } else {
       res.send(`<script type="text/javascript">alert("URL을 입력해주세요."); 
       document.location.href="/diagnostics";</script>`);
+    }
+  },
+
+  confirmLogin: (req, res, next) => {
+    if (!authCheck.isOwner(req, res)) {
+      // 로그인 안되어있으면 로그인 페이지로 이동시킴
+      res.send(`<script type="text/javascript">alert("로그인 후, 이용할 수 있습니다."); 
+                document.location.href="/auth/login";</script>`);
+      return false;
+    } else {
+      next();
     }
   },
 };

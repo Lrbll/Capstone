@@ -31,27 +31,6 @@ app.use(
   })
 );
 
-app.post("/diagnostics", (req, res, next) => {
-  if (!authCheck.isOwner(req, res)) {
-    // 로그인 안되어있으면 로그인 페이지로 이동시킴
-    res.send(`<script type="text/javascript">alert("로그인 후, 이용할 수 있습니다."); 
-              document.location.href="/auth/login";</script>`);
-    return false;
-  } else {
-    next();
-  }
-});
-
-app.get("/auth/login", (req, res, next) => {
-  if (authCheck.isOwner(req, res)) {
-    // 로그인 안되어있으면 로그인 페이지로 이동시킴
-    res.redirect("/auth/logout");
-    return false;
-  } else {
-    next();
-  }
-});
-
 const kakao = {
   clientID: "10e161ee589ebfb98cc9d69c8de7a96b",
   clientSecret: "ffSHboCrf1NJLyNkx5rVtHSq6GuOEFd2",
@@ -105,7 +84,12 @@ app.get("/auth/kakao/callback", async (req, res) => {
   req.session.kakao = user.data;
   //req.session = {['kakao'] : user.data};
 
-  res.send("success");
+  req.session.is_logined = true; // 세션 정보 갱신
+  req.session.nickname = user.data; //수정 필요, 닉네임이 안들어가고 있음
+  console.log(req.session.nickname, "안녕");
+  req.session.save(function () {
+    res.redirect(`/`);
+  });
 });
 
 app.use("/", home);
