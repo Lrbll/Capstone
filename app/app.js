@@ -3,15 +3,14 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
-const axios = require("axios");
-const qs = require("qs");
 const session = require("express-session");
-let db = require("./src/config/db");
+
 // const FileStore = require("session-file-store")(session);
 // const logger = require("morgan");
 
 //라우팅
 const home = require("./src/routes/home");
+const kakao = require("./src/routes/auth/kakao");
 const auth = require("./src/routes/auth/auth");
 var authCheck = require("./src/public/js/home/authCheck.js");
 
@@ -32,75 +31,8 @@ app.use(
   })
 );
 
-const kakao = {
-  clientID: "10e161ee589ebfb98cc9d69c8de7a96b",
-  clientSecret: "ffSHboCrf1NJLyNkx5rVtHSq6GuOEFd2",
-  redirectUri: "http://localhost:3000/auth/kakao/callback",
-};
-//profile account_email
-app.get("/auth/kakao", (req, res) => {
-  const kakaoAuthURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao.clientID}&redirect_uri=${kakao.redirectUri}&response_type=code&scope=profile_nickname`;
-  res.redirect(kakaoAuthURL);
-});
-
-app.get("/auth/kakao/callback", async (req, res) => {
-  //axios>>promise object
-  let token;
-  try {
-    //access토큰을 받기 위한 코드
-    token = await axios({
-      //token
-      method: "POST",
-      url: "https://kauth.kakao.com/oauth/token",
-      headers: {
-        "content-type": "application/x-www-form-urlencoded",
-      },
-      data: qs.stringify({
-        grant_type: "authorization_code", //특정 스트링
-        client_id: kakao.clientID,
-        client_secret: kakao.clientSecret,
-        redirectUri: kakao.redirectUri,
-        code: req.query.code, //결과값을 반환했다. 안됐다.
-      }), //객체를 string 으로 변환
-    });
-  } catch (err) {
-    res.json(err.data);
-  }
-  //access토큰을 받아서 사용자 정보를 알기 위해 쓰는 코드
-  let user;
-  try {
-    // console.log(token); //access정보를 가지고 또 요청해야 정보를 가져올 수 있음.
-    user = await axios({
-      method: "get",
-      url: "https://kapi.kakao.com/v2/user/me",
-      headers: {
-        Authorization: `Bearer ${token.data.access_token}`,
-      }, //헤더에 내용을 보고 보내주겠다.
-    });
-  } catch (e) {
-    res.json(e.data);
-  }
-  req.session.kakao = user.data;
-  const kakao_id = user.data.id;
-  console.log("카카오 아이디는", kakao_id);
-  const query = `INSERT INTO users (id) VALUES (${kakao_id})`;
-  db.mysql.query(query, (err, result) => {
-    if (err) {
-      console.error("INSERT 쿼리 실행 실패: ", err);
-    } else {
-      console.log("레코드 추가 완료!");
-    }
-  });
-
-  //req.session = {['kakao'] : user.data};
-  req.session.is_logined = true; // 세션 정보 갱신
-  req.session.save(function () {
-    res.redirect(`/`);
-  });
-});
-
 app.use("/", home);
 app.use("/auth", auth);
-app.get(kakao.redirectUri);
+app.use("/auth/kakao", kakao);
 
 module.exports = app;
