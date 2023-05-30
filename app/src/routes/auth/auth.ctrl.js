@@ -8,7 +8,8 @@ const output = {
   },
 
   logout: (req, res) => {
-    res.render("home/logout");
+    const nickname = req.session.nickname; // 세션에서 name 값 가져오기
+    res.render("home/logout", { nickname: nickname }); // EJS 템플릿에 name 값을 변수로 전달
   },
 
   register: (req, res) => {
