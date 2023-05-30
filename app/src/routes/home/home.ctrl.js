@@ -1,5 +1,6 @@
 "use strict";
 
+const { spawn } = require("child_process");
 var authCheck = require("../../../src/public/js/home/authCheck.js");
 
 const output = {
@@ -121,26 +122,32 @@ const process = {
     }
   },
 
-  saveUrl: (req, res) => {
-    var url = req.body.url;
+  runPython: (req, res) => {
+    const url = req.body;
 
-    if (url) {
-      db.mysql.query(
-        "INSERT INTO service (url) VALUES (?)",
-        [url],
-        function (error, data) {
-          if (error) {
-            // 데이터베이스 쿼리 에러 처리
-            throw error;
-          }
-          res.send(`<script type="text/javascript">alert("URL이 저장되었습니다.");
-          document.location.href="/diagnostics";</script>`);
-        }
-      );
-    } else {
-      res.send(`<script type="text/javascript">alert("URL을 입력해주세요."); 
-      document.location.href="/diagnostics";</script>`);
-    }
+    const pythonProcess = spawn("C:\\Python310\\python", ["tools_p.py", url]);
+
+    // pythonProcess.stdout.on("data", (data) => {
+    //   // Python 스크립트에서 반환된 데이터를 처리합니다.
+    // });
+
+    // pythonProcess.stderr.on("data", (data) => {
+    //   const error = data.toString();
+    //   console.error("오류:", error);
+    //   res
+    //     .status(500)
+    //     .json({ error: "서버 오류가 발생했습니다.", detail: error });
+    // });
+
+    pythonProcess.on("close", (code) => {
+      if (code === 0) {
+        // Python 스크립트 실행 성공
+        res.json({ success: true });
+      } else {
+        // Python 스크립트 실행 실패
+        res.json({ success: false });
+      }
+    });
   },
 
   confirmLogin: (req, res, next) => {

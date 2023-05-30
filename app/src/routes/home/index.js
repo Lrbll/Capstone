@@ -19,6 +19,6 @@ router.post("/login", ctrl.process.login);
 router.post("/logout", ctrl.process.logout);
 router.post("/register", ctrl.process.register);
 router.post("/diagnostics", ctrl.process.confirmLogin);
-router.post("/diagnostics", ctrl.process.saveUrl);
+// router.post("/diagnostics", ctrl.process.runPython);
 
 module.exports = router;

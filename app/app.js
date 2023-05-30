@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const axios = require("axios");
 const qs = require("qs");
 const session = require("express-session");
+let db = require("./src/config/db");
 // const FileStore = require("session-file-store")(session);
 // const logger = require("morgan");
 
@@ -68,7 +69,7 @@ app.get("/auth/kakao/callback", async (req, res) => {
   //access토큰을 받아서 사용자 정보를 알기 위해 쓰는 코드
   let user;
   try {
-    console.log(token); //access정보를 가지고 또 요청해야 정보를 가져올 수 있음.
+    // console.log(token); //access정보를 가지고 또 요청해야 정보를 가져올 수 있음.
     user = await axios({
       method: "get",
       url: "https://kapi.kakao.com/v2/user/me",
@@ -79,14 +80,20 @@ app.get("/auth/kakao/callback", async (req, res) => {
   } catch (e) {
     res.json(e.data);
   }
-  console.log(user);
-
   req.session.kakao = user.data;
-  //req.session = {['kakao'] : user.data};
+  const kakao_id = user.data.id;
+  console.log("카카오 아이디는", kakao_id);
+  const query = `INSERT INTO users (id) VALUES (${kakao_id})`;
+  db.mysql.query(query, (err, result) => {
+    if (err) {
+      console.error("INSERT 쿼리 실행 실패: ", err);
+    } else {
+      console.log("레코드 추가 완료!");
+    }
+  });
 
+  //req.session = {['kakao'] : user.data};
   req.session.is_logined = true; // 세션 정보 갱신
-  req.session.nickname = user.data; //수정 필요, 닉네임이 안들어가고 있음
-  console.log(req.session.nickname, "안녕");
   req.session.save(function () {
     res.redirect(`/`);
   });
