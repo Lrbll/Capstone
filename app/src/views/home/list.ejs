@@ -38,18 +38,30 @@
               >noweakness</span
             >
           </a>
-          <div class="flex items-center lg:order-2">
-            <a
-              href="/auth/login"
-              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
-              >로그인</a
-            >
-            <a
-              href="/auth/register"
-              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 ml-1"
-              >회원가입</a
-            >
-          </div>
+          <% if (is_logined) { %>
+            <div class="flex items-center lg:order-2">
+              <a
+                href="/auth/logout"
+                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
+                >로그아웃</a
+              >
+            </div>
+            
+          <% } else { %>
+            <div class="flex items-center lg:order-2">
+              <a
+                href="/auth/login"
+                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
+                >로그인</a
+              >
+              <a
+                href="/auth/register"
+                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 ml-1"
+                >회원가입</a
+              >
+            </div>
+          <% } %>
+          
           <div
             class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
           >

@@ -5,39 +5,28 @@ var authCheck = require("../../../src/public/js/home/authCheck.js");
 
 const output = {
   home: (req, res) => {
-    res.render("home/index");
-  },
-
-  login: (req, res) => {
-    res.render("home/login");
-  },
-
-  logout: (req, res) => {
-    res.render("home/logout");
-  },
-
-  register: (req, res) => {
-    res.render("home/register");
+    const is_logined = req.session.is_logined;
+    res.render("home/index", { is_logined: is_logined });
   },
 
   diagnostics: (req, res) => {
-    res.render("home/diagnostics");
+    const is_logined = req.session.is_logined;
+    res.render("home/diagnostics", { is_logined: is_logined });
   },
 
   list: (req, res) => {
-    res.render("home/list");
+    const is_logined = req.session.is_logined;
+    res.render("home/list", { is_logined: is_logined });
   },
 
   info: (req, res) => {
-    res.render("home/info");
+    const is_logined = req.session.is_logined;
+    res.render("home/info", { is_logined: is_logined });
   },
 
   result: (req, res) => {
-    res.render("home/result");
-  },
-
-  test: (req, res) => {
-    res.render("home/test");
+    const is_logined = req.session.is_logined;
+    res.render("home/result", { is_logined: is_logined });
   },
 };
 
