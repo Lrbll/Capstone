@@ -1,6 +1,7 @@
 "use strict";
 
 const { spawn } = require("child_process");
+const fs = require("fs");
 var authCheck = require("../../../src/public/js/home/authCheck.js");
 
 const output = {
@@ -16,7 +17,17 @@ const output = {
 
   list: (req, res) => {
     const is_logined = req.session.is_logined;
-    res.render("home/list", { is_logined: is_logined });
+    fs.readFile("src/scripts_info/scripts.json", "utf8", (err, data) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error reading JSON file");
+        return;
+      }
+
+      const scripts = JSON.parse(data);
+      res.render("home/list", { scripts: scripts, is_logined: is_logined });
+    });
+    // res.render("home/list", { is_logined: is_logined });
   },
 
   info: (req, res) => {

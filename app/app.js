@@ -10,9 +10,8 @@ const session = require("express-session");
 
 //라우팅
 const home = require("./src/routes/home");
-const kakao = require("./src/routes/auth/kakao");
 const auth = require("./src/routes/auth/auth");
-var authCheck = require("./src/public/js/home/authCheck.js");
+const kakao = require("./src/routes/auth/kakao");
 
 //앱세팅
 app.set("views", "./src/views");
