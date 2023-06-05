@@ -39,27 +39,27 @@
             >
           </a>
           <% if (is_logined) { %>
-            <div class="flex items-center lg:order-2">
-              <a
-                href="/auth/logout"
-                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
-                >로그아웃</a
-              >
-            </div>
-            
+          <div class="flex items-center lg:order-2">
+            <a
+              href="/auth/logout"
+              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
+              >로그아웃</a
+            >
+          </div>
+
           <% } else { %>
-            <div class="flex items-center lg:order-2">
-              <a
-                href="/auth/login"
-                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
-                >로그인</a
-              >
-              <a
-                href="/auth/register"
-                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 ml-1"
-                >회원가입</a
-              >
-            </div>
+          <div class="flex items-center lg:order-2">
+            <a
+              href="/auth/login"
+              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
+              >로그인</a
+            >
+            <a
+              href="/auth/register"
+              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 ml-1"
+              >회원가입</a
+            >
+          </div>
           <% } %>
           <div
             class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
@@ -68,7 +68,9 @@
               class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
             >
               <li>
-                <a href="/" class="block py-2 pl-3 pr-3 text-gray-900 text-xl hover:text-green-700 hover:transition-all hover:duration-300"
+                <a
+                  href="/"
+                  class="block py-2 pl-3 pr-3 text-gray-900 text-xl hover:text-green-700 hover:transition-all hover:duration-300"
                   >홈</a
                 >
               </li>
@@ -103,7 +105,9 @@
 
     <!-- 진단결과 영역 -->
     <section class="border-b py-8 w-3/5 mx-auto">
-      <div class="container max-w-5xl mx-auto m-8 rounded-lg shadow-lg bg-white mt-20 pt-5">
+      <div
+        class="container max-w-5xl mx-auto m-8 rounded-lg shadow-lg bg-white mt-20 pt-5"
+      >
         <h2
           class="w-full my-2 text-3xl font-medium leading-tight text-center text-black"
         >
@@ -114,181 +118,149 @@
             class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
           ></div>
         </div>
-        <div class="flex flex-wrap">
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
-            </div>
-          </div>
-          <div class="w-full p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-2xl text-gray-800 font-bold leading-none mb-3">
-                제목
-              </h3>
-              <p class="text-gray-600 mb-8">
-                내용
-                <hr>
-              </p>
+        <div class="flex flex-col">
+          <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+              <div class="overflow-hidden">
+                <table class="min-w-full">
+                  <thead class="bg-white border-b">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        #
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        First
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        Last
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        Handle
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        1
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Mark
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Otto
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        @mdo
+                      </td>
+                    </tr>
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        2
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Jacob
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Dillan
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        @fat
+                      </td>
+                    </tr>
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        3
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Mark
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Twen
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        @twitter
+                      </td>
+                    </tr>
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        4
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Bob
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        Dillan
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        @fat
+                      </td>
+                    </tr>
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        5
+                      </td>
+                      <td
+                        colspan="2"
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
+                      >
+                        Larry the Bird
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        @twitter
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -306,17 +278,17 @@
               noweakness
             </a>
           </div>
-          <div class="flex-1 ml-10">
+          <div class="flex-1">
             <a
               href="/diagnostics"
               class="text-gray-900 hover:text-green-700 md:mb-6 no-underline hover:underline hover:underline-offset-2"
               >진단서비스</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
+              <li class="mt-2 inline-block mr-2">
                 <p class="text-gray-500">진단도구</p>
               </li>
-              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
+              <li class="mt-2 inline-block mr-2">
                 <p class="text-gray-500">웹서비스</p>
               </li>
             </ul>
@@ -328,7 +300,7 @@
               >점검항목</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
+              <li class="mt-2 inline-block mr-2">
                 <p class="text-gray-500">웹취약점</p>
               </li>
             </ul>
@@ -340,10 +312,10 @@
               >진단결과</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
+              <li class="mt-2 inline-block mr-2">
                 <p class="text-gray-500">진단결과</p>
               </li>
-              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
+              <li class="mt-2 inline-block mr-2">
                 <p class="text-gray-500">대응방안</p>
               </li>
             </ul>
@@ -355,10 +327,10 @@
               >소개</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
+              <li class="mt-2 inline-block mr-2">
                 <p class="text-gray-500">About</p>
               </li>
-              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
+              <li class="mt-2 inline-block mr-2">
                 <p class="text-gray-500">Project</p>
               </li>
             </ul>
@@ -368,5 +340,3 @@
     </footer>
   </body>
 </html>
-
-
