@@ -104,7 +104,7 @@
     </header>
 
     <!-- 진단결과 영역 -->
-    <section class="border-b py-8 w-3/5 mx-auto">
+    <section class="border-b py-8 w-4/5 mx-auto">
       <div
         class="container max-w-5xl mx-auto m-8 rounded-lg shadow-lg bg-white mt-20 pt-5"
       >
@@ -129,29 +129,30 @@
                         scope="col"
                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        #
+                        번호
                       </th>
                       <th
                         scope="col"
                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        First
+                        항목
                       </th>
                       <th
                         scope="col"
                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        Last
+                        진단결과
                       </th>
                       <th
                         scope="col"
                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        Handle
+                        대응
                       </th>
                     </tr>
                   </thead>
                   <tbody>
+                    <!-- SI_Login -->
                     <tr class="bg-gray-100 border-b">
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -161,19 +162,20 @@
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Mark
+                        <%= scripts.SI_Login.name %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Otto
+                        <%= SI_Login %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        @mdo
+                        <%= scripts.SI_Login.info %>
                       </td>
                     </tr>
+                    <!-- SI_Search -->
                     <tr class="bg-white border-b">
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -183,19 +185,20 @@
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Jacob
+                        <%= scripts.SI_Search.name %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Dillan
+                        <%= SI_Search %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        @fat
+                        <%= scripts.SI_Search.info %>
                       </td>
                     </tr>
+                    <!-- PHP_CI -->
                     <tr class="bg-gray-100 border-b">
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -205,19 +208,20 @@
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Mark
+                        <%= scripts.PHP_CI.name %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Twen
+                        <%= PHP_CI %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        @twitter
+                        <%= scripts.PHP_CI.info %>
                       </td>
                     </tr>
+                    <!-- AE -->
                     <tr class="bg-white border-b">
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -227,19 +231,20 @@
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Bob
+                        <%= scripts.AE.name %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Dillan
+                        <%= AE %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        @fat
+                        <%= scripts.AE.info %>
                       </td>
                     </tr>
+                    <!-- DL -->
                     <tr class="bg-gray-100 border-b">
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -247,15 +252,364 @@
                         5
                       </td>
                       <td
-                        colspan="2"
-                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        Larry the Bird
+                        <%= scripts.DL.name %>
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        @twitter
+                        <%= DL %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.DL.info %>
+                      </td>
+                    </tr>
+                    <!-- XSS_Stored -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        6
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XSS_Stored.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= XSS_Stored %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XSS_Stored.info %>
+                      </td>
+                    </tr>
+                    <!-- SF -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        7
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.SF.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= SF %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.SF.info %>
+                      </td>
+                    </tr>
+                    <!-- Cookie -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        8
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Cookie.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= Cookie %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Cookie.info %>
+                      </td>
+                    </tr>
+                    <!-- Redirect -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        9
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Redirect.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= Redirect %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Redirect.info %>
+                      </td>
+                    </tr>
+                    <!-- CSRF -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        10
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.CSRF.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= CSRF %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.CSRF.info %>
+                      </td>
+                    </tr>
+                    <!-- BF -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        11
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BF.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= BF %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BF.info %>
+                      </td>
+                    </tr>
+                    <!-- LDAP -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        12
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.LDAP.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= LDAP %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.LDAP.info %>
+                      </td>
+                    </tr>
+                    <!-- XML_XPATH -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        13
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XML_XPATH.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= XML_XPATH %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XML_XPATH.info %>
+                      </td>
+                    </tr>
+                    <!-- BA -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        14
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BA.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= BA %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BA.info %>
+                      </td>
+                    </tr>
+                    <!-- DOR -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        15
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.DOR.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= DOR %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.DOR.info %>
+                      </td>
+                    </tr>
+                    <!-- Base -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        16
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Base.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= Base %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Base.info %>
+                      </td>
+                    </tr>
+                    <!-- RFA -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        17
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.RFA.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= RFA %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.RFA.info %>
+                      </td>
+                    </tr>
+                    <!-- XSS -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        18
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XSS.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= XSS %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XSS.info %>
+                      </td>
+                    </tr>
+                    <!-- SM -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        19
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.SM.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= SM %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.SM.info %>
+                      </td>
+                    </tr>
+                    <!-- BS -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        20
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BS.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= BS %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BS.info %>
                       </td>
                     </tr>
                   </tbody>
