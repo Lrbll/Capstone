@@ -7,7 +7,16 @@ var authCheck = require("../../../src/public/js/home/authCheck.js");
 const output = {
   home: (req, res) => {
     const is_logined = req.session.is_logined;
-    res.render("home/index", { is_logined: is_logined });
+    fs.readFile("src/scripts_info/scripts.json", "utf8", (err, data) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error reading JSON file");
+        return;
+      }
+
+      const scripts = JSON.parse(data);
+      res.render("home/index", { scripts: scripts, is_logined: is_logined });
+    });
   },
 
   diagnostics: (req, res) => {
