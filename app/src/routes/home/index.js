@@ -12,6 +12,6 @@ router.get("/info", ctrl.output.info);
 router.get("/result", ctrl.output.result);
 
 router.post("/diagnostics", ctrl.process.confirmLogin);
-// router.post("/diagnostics", ctrl.process.runPython);
+router.post("/diagnostics", ctrl.process.runPython);
 
 module.exports = router;

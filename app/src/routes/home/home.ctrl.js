@@ -49,7 +49,7 @@ const output = {
     const is_logined = req.session.is_logined;
 
     // DB에서 진단도구 결과 가져오기
-    const query = "SELECT results FROM results_info";
+    const query = "SELECT results FROM json_db";
     db.mysql.query(query, (err, results) => {
       if (err) {
         console.error("Error querying the database:", err);
@@ -201,9 +201,9 @@ const process = {
   },
 
   runPython: (req, res) => {
-    const url = req.body;
+    const { url } = req.body;
 
-    const pythonProcess = spawn("C:\\Python310\\python", ["tools_p.py", url]);
+    const pythonProcess = spawn("venv\\Scripts\\python", ["main.py", url]);
 
     // pythonProcess.stdout.on("data", (data) => {
     //   // Python 스크립트에서 반환된 데이터를 처리합니다.
@@ -220,7 +220,8 @@ const process = {
     pythonProcess.on("close", (code) => {
       if (code === 0) {
         // Python 스크립트 실행 성공
-        res.json({ success: true });
+        res.send(`<script type="text/javascript">alert("점검이 완료되었습니다."); 
+              document.location.href="/result";</script>`);
       } else {
         // Python 스크립트 실행 실패
         res.json({ success: false });
