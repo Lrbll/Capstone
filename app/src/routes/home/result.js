@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
-let db = require("../../config/db");
+const db = require("../../config/db");
 
 // url에 대한 페이지 처리 로직을 담당하는 핸들러 함수
 const urlHandler = (req, res, url) => {
@@ -10,7 +10,12 @@ const urlHandler = (req, res, url) => {
   console.log(url);
 
   // url에 해당하는 페이지 처리 로직
-  const query = `SELECT results FROM results_info WHERE id = '${req.session.nickname}' AND url = '${url}' ORDER BY num DESC LIMIT 1`;
+  const query = `SELECT results 
+  FROM results_info 
+  WHERE id = '${req.session.nickname}' 
+  AND url = '${url}' 
+  ORDER BY num DESC 
+  LIMIT 2`;
 
   db.mysql.query(query, (err, results) => {
     if (err) {
@@ -25,30 +30,81 @@ const urlHandler = (req, res, url) => {
       return;
     }
 
-    const jsonData = JSON.parse(results[0].results);
+    // 첫 번째 행의 결과
+    const jsonData1 = JSON.parse(results[0].results);
     const {
-      AE,
-      BA,
-      BF,
-      BS,
-      DL,
-      SF,
-      SM,
-      DOR,
-      RFA,
-      XSS,
-      Base,
-      CSRF,
-      LDAP,
-      Cookie,
-      PHP_CI,
-      Redirect,
-      SI_Login,
-      SI_Search,
-      XML_XPATH,
-      XSS_Stored,
-    } = jsonData;
-    console.log(jsonData);
+      AE: AE1,
+      BA: BA1,
+      BF: BF1,
+      BS: BS1,
+      DL: DL1,
+      SF: SF1,
+      SM: SM1,
+      DOR: DOR1,
+      RFA: RFA1,
+      XSS: XSS1,
+      Base: Base1,
+      CSRF: CSRF1,
+      LDAP: LDAP1,
+      Cookie: Cookie1,
+      PHP_CI: PHP_CI1,
+      Redirect: Redirect1,
+      SI_Login: SI_Login1,
+      SI_Search: SI_Search1,
+      XML_XPATH: XML_XPATH1,
+      XSS_Stored: XSS_Stored1,
+    } = jsonData1;
+
+    // 두 번째 행의 결과
+    let jsonData2 = null;
+    let AE2,
+      BA2,
+      BF2,
+      BS2,
+      DL2,
+      SF2,
+      SM2,
+      DOR2,
+      RFA2,
+      XSS2,
+      Base2,
+      CSRF2,
+      LDAP2,
+      Cookie2,
+      PHP_CI2,
+      Redirect2,
+      SI_Login2,
+      SI_Search2,
+      XML_XPATH2,
+      XSS_Stored2;
+    if (results.length > 1) {
+      jsonData2 = JSON.parse(results[1].results);
+      ({
+        AE: AE2,
+        BA: BA2,
+        BF: BF2,
+        BS: BS2,
+        DL: DL2,
+        SF: SF2,
+        SM: SM2,
+        DOR: DOR2,
+        RFA: RFA2,
+        XSS: XSS2,
+        Base: Base2,
+        CSRF: CSRF2,
+        LDAP: LDAP2,
+        Cookie: Cookie2,
+        PHP_CI: PHP_CI2,
+        Redirect: Redirect2,
+        SI_Login: SI_Login2,
+        SI_Search: SI_Search2,
+        XML_XPATH: XML_XPATH2,
+        XSS_Stored: XSS_Stored2,
+      } = jsonData2);
+    }
+
+    console.log(jsonData1);
+    console.log(jsonData2);
 
     // 파일에서 점검항목 info 가져오기
     fs.readFile("src/scripts_info/scripts.json", "utf8", (err, data) => {
@@ -63,26 +119,46 @@ const urlHandler = (req, res, url) => {
       res.render("home/result2", {
         is_logined: is_logined,
         scripts: scripts,
-        AE,
-        BA,
-        BF,
-        BS,
-        DL,
-        SF,
-        SM,
-        DOR,
-        RFA,
-        XSS,
-        Base,
-        CSRF,
-        LDAP,
-        Cookie,
-        PHP_CI,
-        Redirect,
-        SI_Login,
-        SI_Search,
-        XML_XPATH,
-        XSS_Stored,
+        AE1,
+        BA1,
+        BF1,
+        BS1,
+        DL1,
+        SF1,
+        SM1,
+        DOR1,
+        RFA1,
+        XSS1,
+        Base1,
+        CSRF1,
+        LDAP1,
+        Cookie1,
+        PHP_CI1,
+        Redirect1,
+        SI_Login1,
+        SI_Search1,
+        XML_XPATH1,
+        XSS_Stored1,
+        AE2,
+        BA2,
+        BF2,
+        BS2,
+        DL2,
+        SF2,
+        SM2,
+        DOR2,
+        RFA2,
+        XSS2,
+        Base2,
+        CSRF2,
+        LDAP2,
+        Cookie2,
+        PHP_CI2,
+        Redirect2,
+        SI_Login2,
+        SI_Search2,
+        XML_XPATH2,
+        XSS_Stored2,
       });
     });
   });
