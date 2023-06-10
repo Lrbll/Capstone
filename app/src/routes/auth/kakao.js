@@ -56,9 +56,10 @@ router.get("/callback", async (req, res) => {
   }
 
   req.session.kakao = user.data; //kakao 로그인 관련 모든 정보
-  req.session.nickname = user.data.properties.nickname;
+  // req.session.nickname = user.data.properties.nickname;
+  req.session.nickname = user.data.id;
+
   const kakao_id = user.data.id;
-  req.session.nickname = user.data.properties.nickname;
   console.log("카카오 아이디는", kakao_id);
   const selectQuery = `SELECT * FROM users WHERE id = ${kakao_id}`;
   db.mysql.query(selectQuery, (selectErr, selectResult) => {

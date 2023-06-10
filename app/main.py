@@ -183,7 +183,7 @@ def AE(url):  # 관리자 페이지 노출
     for link in ad_p:
         try:
             res = urlopen(url + link)
-            if res.status == 200:  # res.status : http 응답코드 가져오기
+            if res.status == 205:  # res.status : http 응답코드 가져오기
                 # #getcode() : http 응답상태 가져오기도 가능함, 하지만 얘는 주로 오류 상태코드를 가져올 때 사용
                 print(url + link, "는 취약합니다.")
                 count += 1
@@ -191,7 +191,7 @@ def AE(url):  # 관리자 페이지 노출
             HTTPError
         ) as e:  # (404)에러를 위한 except 문  #HTTPError : 페이지를 찾을 수 없거나, URL 해석에서 에러가 생긴 경우
             code = e.getcode()  # getcode() : http 응답상태 가져오기
-            if code != 200:  # 404 에러 발생 시 continue
+            if code != 205:  # 404 에러 발생 시 continue
                 continue
     if count > 0:
         print("관리자페이지 노출 취약")
@@ -450,9 +450,9 @@ def CSRF(url):  # CSRF
     create = url + "/user_new.php"  # 사용자 생성 #student14
     driver.get(create)
     id = driver.find_element(By.ID, "login")
-    id.send_keys("student190")  # 변경!!
+    id.send_keys("student205")  # 변경!!
     email = driver.find_element(By.ID, "email")
-    email.send_keys("student190@new.com")  # 변경!!
+    email.send_keys("student205@new.com")  # 변경!!
     passwd = driver.find_element(By.ID, "password")
     passwd.send_keys("test")
     passwd_conf = driver.find_element(By.ID, "password_conf")
@@ -464,7 +464,7 @@ def CSRF(url):  # CSRF
 
     driver.get(url + "/login")  # 만든 계정으로 로그인 #student14 로그인
     log_in = driver.find_element(By.ID, "login")
-    log_in.send_keys("student190")  # 변경!!
+    log_in.send_keys("student205")  # 변경!!
     passwd = driver.find_element(By.ID, "password")
     passwd.send_keys("test")
     driver.find_element(By.TAG_NAME, "button").send_keys(Keys.ENTER)
@@ -503,7 +503,7 @@ def CSRF(url):  # CSRF
         check = url + "/sqli_16.php"  # 비밀번호 변경 확인
         driver.get(check)
         input_box = driver.find_element(By.ID, "login")
-        input_box.send_keys("student190")  # 변경!!!
+        input_box.send_keys("student205")  # 변경!!!
         input_box2 = driver.find_element(By.ID, "password")
         input_box2.send_keys("testing")
         driver.find_element(By.TAG_NAME, "button").send_keys(Keys.ENTER)
@@ -656,9 +656,9 @@ def DOR(url):
 
     driver.get(create)
     id = driver.find_element(By.ID, "login")
-    id.send_keys("user190")  # 변경!
+    id.send_keys("user205")  # 변경!
     email = driver.find_element(By.ID, "email")
-    email.send_keys("user190@a.com")  # 변경!
+    email.send_keys("user205@a.com")  # 변경!
     passwd = driver.find_element(By.ID, "password")
     passwd.send_keys("bbb")
     passwd_conf = driver.find_element(By.ID, "password_conf")
@@ -679,7 +679,7 @@ def DOR(url):
                 input_element.get_attribute("outerHTML")
             )  # get_attribute : 특정 요소의 값 반환
             driver.execute_script(
-                "arguments[0].value = 'user190'", input_element
+                "arguments[0].value = 'user205'", input_element
             )  # 변경!
             print(
                 input_element.get_attribute("outerHTML")
@@ -694,7 +694,7 @@ def DOR(url):
             driver.get(check)
 
             input_box = driver.find_element(By.ID, "login")  # 로그인
-            input_box.send_keys("user190")  # 변경!
+            input_box.send_keys("user205")  # 변경!
             input_box2 = driver.find_element(By.ID, "password")
             input_box2.send_keys("bbb")
             driver.find_element(By.TAG_NAME, "button").send_keys(Keys.ENTER)
@@ -1002,8 +1002,10 @@ def db(url):
         print(url)
 
 
-def json_web(url):
+def json_web(user_id, url):
     now = f"{datetime.now()}"
+
+    user_id = f"'{user_id}'"
 
     json_context = {
         "url": url,
@@ -1031,18 +1033,38 @@ def json_web(url):
     }
 
     json_string = json.dumps(json_context, indent=4, ensure_ascii=False)
-    json_string2 = f"'{json_string}'"
+    url = f"'{url}'"
+    json_string = f"'{json_string}'"
 
     conn = pymysql.connect(
         host="127.0.0.1", user="root", password="283400aa", database="dev"
     )
 
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO json_db VALUES ({json_string2});")
-    cursor.execute("select * from json_db;")
-    row = cursor.fetchall()
+    # cursor.execute(f"INSERT INTO json_db VALUES ({json_string});")
 
+    cursor.execute(
+        f"select MAX(num) from results_info where id = {user_id} && url = {url};"
+    )
+    row = cursor.fetchone()
+    for i in row:
+        num = i
+        print(num)
+
+    cursor.execute(
+        f"UPDATE results_info SET results = {json_string} WHERE num = {num};"
+    )
+    cursor.execute("select * from results_info;")
     conn.commit()
+
+    row2 = cursor.fetchall()
+    # print(result)
+    # 조회 결과 전부 출력
+
+    for i in row2:
+        res = i
+        print(res)
+
     conn.close()
 
 
@@ -1072,10 +1094,11 @@ def capstone(url):
 
 if __name__ == "__main__":
     # url = 'http://192.168.75.128//bWAPP' #윈도우에서 수정해야함
-    url = sys.argv[1]
+    user_id = sys.argv[1]
+    url = sys.argv[2]
     # 이제 url 변수에 JavaScript에서 전달한 URL 값이 저장되어 있습니다.
     # 이 값을 사용하여 파이썬 코드를 실행시킬 수 있습니다.
     capstone(url)
-    db(url)
-    json_web(url)
+    # db(url)
+    json_web(user_id, url)
     driver.quit()

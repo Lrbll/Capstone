@@ -1,5 +1,6 @@
 "use strict";
 
+const moment = require("moment-timezone");
 const { spawn } = require("child_process");
 const fs = require("fs");
 var authCheck = require("../../../src/public/js/home/authCheck.js");
@@ -200,35 +201,6 @@ const process = {
     }
   },
 
-  runPython: (req, res) => {
-    const { url } = req.body;
-
-    const pythonProcess = spawn("venv\\Scripts\\python", ["main.py", url]);
-
-    // pythonProcess.stdout.on("data", (data) => {
-    //   // Python 스크립트에서 반환된 데이터를 처리합니다.
-    // });
-
-    // pythonProcess.stderr.on("data", (data) => {
-    //   const error = data.toString();
-    //   console.error("오류:", error);
-    //   res
-    //     .status(500)
-    //     .json({ error: "서버 오류가 발생했습니다.", detail: error });
-    // });
-
-    pythonProcess.on("close", (code) => {
-      if (code === 0) {
-        // Python 스크립트 실행 성공
-        res.send(`<script type="text/javascript">alert("점검이 완료되었습니다."); 
-              document.location.href="/result";</script>`);
-      } else {
-        // Python 스크립트 실행 실패
-        res.json({ success: false });
-      }
-    });
-  },
-
   confirmLogin: (req, res, next) => {
     if (!authCheck.isOwner(req, res)) {
       // 로그인 안되어있으면 로그인 페이지로 이동시킴
@@ -238,6 +210,43 @@ const process = {
     } else {
       next();
     }
+  },
+
+  runPython: (req, res) => {
+    const id = req.session.nickname;
+    const { url } = req.body;
+    const date = moment().tz("Asia/Seoul").format("YYYY-MM-DD HH:mm:ss");
+    const query = `INSERT INTO results_info (id, url, date, results) VALUES ('${id}', '${url}', '${date}', '{}')`;
+
+    db.mysql.query(query, (error) => {
+      if (error) {
+        console.error("Failed to insert data:", error);
+        res
+          .status(500)
+          .json({ error: "서버 오류가 발생했습니다.", detail: error });
+        return;
+      }
+
+      const pythonProcess = spawn("venv\\Scripts\\python", [
+        "main.py",
+        req.session.nickname,
+        url,
+      ]);
+
+      pythonProcess.on("close", (code) => {
+        if (code === 0) {
+          // Python 스크립트 실행 성공
+          res.send(
+            `<script type="text/javascript">alert("점검이 완료되었습니다."); document.location.href="/result";</script>`
+          );
+        } else {
+          // Python 스크립트 실행 실패
+          res.send(
+            `<script type="text/javascript">alert("점검에 실패했습니다."); document.location.href="/diagnostics";</script>`
+          );
+        }
+      });
+    });
   },
 };
 
