@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>noweakness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap");
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+      }
+      .gradient {
+        background: linear-gradient(90deg, #0b952b9e 0%, #d8da51 100%);
+      }
+    </style>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        a[aria-current="page"] {
+          @apply text-green-700;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100">
+    <!-- 헤더 영역 -->
+    <header class="fixed w-full shadow-md z-10">
+      <nav class="bg-white border-gray-200 py-2.5">
+        <div
+          class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto"
+        >
+          <a href="/" class="flex items-center">
+            <!-- <img src="./images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Logo" /> -->
+            <span
+              class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+              >noweakness</span
+            >
+          </a>
+          <% if (is_logined) { %>
+          <div class="flex items-center lg:order-2">
+            <a
+              href="/auth/logout"
+              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
+              >로그아웃</a
+            >
+          </div>
+
+          <% } else { %>
+          <div class="flex items-center lg:order-2">
+            <a
+              href="/auth/login"
+              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
+              >로그인</a
+            >
+            <a
+              href="/auth/register"
+              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 ml-1"
+              >회원가입</a
+            >
+          </div>
+          <% } %>
+          <div
+            class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1"
+          >
+            <ul
+              class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
+            >
+              <li>
+                <a
+                  href="/"
+                  class="block py-2 pl-3 pr-3 text-gray-900 text-xl hover:text-green-700 hover:transition-all hover:duration-300"
+                  >홈</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="/diagnostics"
+                  class="block py-2 pl-3 pr-3 text-xl text-gray-900 hover:text-green-700 hover:transition-all hover:duration-300"
+                  >진단서비스</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/list"
+                  class="block py-2 pl-3 pr-3 text-xl text-gray-900 hover:text-green-700 hover:transition-all hover:duration-300"
+                  >점검항목</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/result"
+                  class="block py-2 pl-3 pr-3 text-xl text-gray-900 hover:text-green-700 hover:transition-all hover:duration-300"
+                  aria-current="page"
+                  >진단결과</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- 진단결과 영역 -->
+    <% if (is_logined) { %>
+    <section class="border-b py-8 w-4/5 mx-auto">
+      <div
+        class="container max-w-5xl mx-auto m-8 rounded-lg shadow-lg bg-white mt-20 pt-5"
+      >
+        <h2
+          class="w-full my-2 text-3xl font-medium leading-tight text-center text-black"
+        >
+          진단결과
+        </h2>
+        <div class="w-full mb-4">
+          <div
+            class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
+          ></div>
+        </div>
+        <div class="flex flex-col">
+          <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+              <div class="overflow-hidden">
+                <table class="min-w-full">
+                  <thead class="bg-white border-b">
+                    <tr>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        번호
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        항목
+                      </th>
+                      <th
+                        scope="col"
+                        class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      >
+                        현재 이력
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- SI_Login -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        1
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.SI_Login.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= SI_Login %>
+                      </td>
+                    </tr>
+                    <!-- SI_Search -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        2
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.SI_Search.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= SI_Search %>
+                      </td>
+                    </tr>
+                    <!-- PHP_CI -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        3
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.PHP_CI.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= PHP_CI %>
+                      </td>
+                    </tr>
+                    <!-- AE -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        4
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.AE.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= AE %>
+                      </td>
+                    </tr>
+                    <!-- DL -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        5
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.DL.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= DL %>
+                      </td>
+                    </tr>
+                    <!-- XSS_Stored -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        6
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XSS_Stored.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= XSS_Stored %>
+                      </td>
+                    </tr>
+                    <!-- SF -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        7
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.SF.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= SF %>
+                      </td>
+                    </tr>
+                    <!-- Cookie -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        8
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Cookie.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= Cookie %>
+                      </td>
+                    </tr>
+                    <!-- Redirect -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        9
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Redirect.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= Redirect %>
+                      </td>
+                    </tr>
+                    <!-- CSRF -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        10
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.CSRF.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= CSRF %>
+                      </td>
+                    </tr>
+                    <!-- BF -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        11
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BF.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= BF %>
+                      </td>
+                    </tr>
+                    <!-- LDAP -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        12
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.LDAP.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= LDAP %>
+                      </td>
+                    </tr>
+                    <!-- XML_XPATH -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        13
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XML_XPATH.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= XML_XPATH %>
+                      </td>
+                    </tr>
+                    <!-- BA -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        14
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BA.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= BA %>
+                      </td>
+                    </tr>
+                    <!-- DOR -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        15
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.DOR.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= DOR %>
+                      </td>
+                    </tr>
+                    <!-- Base -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        16
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.Base.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= Base %>
+                      </td>
+                    </tr>
+                    <!-- RFA -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        17
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.RFA.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= RFA %>
+                      </td>
+                    </tr>
+                    <!-- XSS -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        18
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.XSS.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= XSS %>
+                      </td>
+                    </tr>
+                    <!-- SM -->
+                    <tr class="bg-gray-100 border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        19
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.SM.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= SM %>
+                      </td>
+                    </tr>
+                    <!-- BS -->
+                    <tr class="bg-white border-b">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        20
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= scripts.BS.name %>
+                      </td>
+                      <td
+                        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+                      >
+                        <%= BS %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <% } else { %>
+    <section><h1>아직 진단이력이 없으신가요?</h1></section>
+    <% } %>
+    <!--Footer-->
+    <footer class="bg-white">
+      <div class="container mx-auto px-8">
+        <div class="w-full flex flex-col md:flex-row py-6">
+          <div class="flex-1 mb-6 text-black">
+            <a
+              class="text-green-700 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+              href="#"
+            >
+              noweakness
+            </a>
+          </div>
+          <div class="flex-1">
+            <a
+              href="/diagnostics"
+              class="text-gray-900 hover:text-green-700 md:mb-6 no-underline hover:underline hover:underline-offset-2"
+              >진단서비스</a
+            >
+            <ul class="list-reset mb-6">
+              <li class="mt-2 inline-block mr-2">
+                <p class="text-gray-500">진단도구</p>
+              </li>
+              <li class="mt-2 inline-block mr-2">
+                <p class="text-gray-500">웹서비스</p>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1">
+            <a
+              href="/list"
+              class="text-gray-900 hover:text-green-700 md:mb-6 no-underline hover:underline hover:underline-offset-2"
+              >점검항목</a
+            >
+            <ul class="list-reset mb-6">
+              <li class="mt-2 inline-block mr-2">
+                <p class="text-gray-500">웹취약점</p>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1">
+            <a
+              href="/result"
+              class="text-gray-900 hover:text-green-700 md:mb-6 no-underline hover:underline hover:underline-offset-2"
+              >진단결과</a
+            >
+            <ul class="list-reset mb-6">
+              <li class="mt-2 inline-block mr-2">
+                <p class="text-gray-500">진단결과</p>
+              </li>
+              <li class="mt-2 inline-block mr-2">
+                <p class="text-gray-500">대응방안</p>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1">
+            <a
+              href="/info"
+              class="text-gray-900 hover:text-green-700 md:mb-6 no-underline hover:underline hover:underline-offset-2"
+              >소개</a
+            >
+            <ul class="list-reset mb-6">
+              <li class="mt-2 inline-block mr-2">
+                <p class="text-gray-500">About</p>
+              </li>
+              <li class="mt-2 inline-block mr-2">
+                <p class="text-gray-500">Project</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

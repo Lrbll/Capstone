@@ -10,6 +10,7 @@ const session = require("express-session");
 
 //라우팅
 const home = require("./src/routes/home");
+const result = require("./src/routes/home/result");
 const auth = require("./src/routes/auth/auth");
 const kakao = require("./src/routes/auth/kakao");
 
@@ -31,6 +32,7 @@ app.use(
 );
 
 app.use("/", home);
+app.use("/result", result);
 app.use("/auth", auth);
 app.use("/auth/kakao", kakao);
 
