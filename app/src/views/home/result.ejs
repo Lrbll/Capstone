@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>noweakness</title>
+    <title>Hook</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap");
@@ -24,7 +24,7 @@
     </style>
   </head>
 
-  <body class="bg-gray-100">
+  <body>
     <!-- 헤더 영역 -->
     <header class="fixed w-full shadow-md z-10">
       <nav class="bg-white border-gray-200 py-2.5">
@@ -32,11 +32,7 @@
           class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto"
         >
           <a href="/" class="flex items-center">
-            <!-- <img src="./images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Logo" /> -->
-            <span
-              class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-              >noweakness</span
-            >
+            <img src="img/Hook_logo.png" class="h-8 mx-2 sm:h-10" alt="Logo" />
           </a>
           <% if (is_logined) { %>
           <div class="flex items-center lg:order-2">
@@ -104,10 +100,11 @@
     </header>
 
     <!-- 진단결과 영역 -->
+    <!-- 로그인 되어있을 때 -->
     <% if (is_logined) { %>
-    <section class="border-b py-8 md:w-2/5 w-3/5 mx-auto">
+    <section class="bg-gray-100 border-b py-8 mx-auto">
       <div
-        class="container max-w-5xl mx-auto m-8 rounded-lg shadow-lg bg-white mt-20 pt-5"
+        class="container w-3/4 lg:w-1/3 max-w-5xl mx-auto m-8 rounded-lg shadow-lg bg-white mt-20 pt-5 min-h-[400px]"
       >
         <h2
           class="w-full my-2 text-3xl font-medium leading-tight text-center text-black"
@@ -143,7 +140,32 @@
       </div>
     </section>
     <% } else { %>
-    <section><h1>아직 진단이력이 없으신가요?</h1></section>
+
+    <!--로그인 안되어있을 때-->
+    <section
+      class="gradient border-b py-8 flex flex-col justify-center items-center min-h-[85vh]"
+    >
+      <div class="container h-full m-auto text-center py-6 mb-12">
+        <h3 class="text-xl font-semibold leading-tight mb-10">
+          아직 회원이 아니신가요?
+        </h3>
+        <h2 class="w-full text-5xl font-bold leading-tight text-white">
+          Hook에
+          <span class="uppercase overline decoration-dotted">가입</span>하고
+        </h2>
+        <h3 class="my-4 text-2xl font-semibold leading-tight">
+          진단이력과 대응방안을 확인해보세요
+        </h3>
+        <button
+          type="button"
+          onclick="location.href='/auth/register'"
+          class="mx-auto lg:mx-0 hover:brightness-50 bg-white text-gray-800 font-bold rounded-full mt-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+        >
+          회원가입 하러가기
+        </button>
+      </div>
+    </section>
+
     <% } %>
     <!--Footer-->
     <footer class="bg-white">
@@ -154,7 +176,7 @@
               class="text-green-700 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
               href="#"
             >
-              noweakness
+              Hook
             </a>
           </div>
           <div class="flex-1">
@@ -164,10 +186,10 @@
               >진단서비스</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">진단도구</p>
               </li>
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">웹서비스</p>
               </li>
             </ul>
@@ -179,7 +201,7 @@
               >점검항목</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">웹취약점</p>
               </li>
             </ul>
@@ -191,10 +213,10 @@
               >진단결과</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">진단결과</p>
               </li>
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">대응방안</p>
               </li>
             </ul>
@@ -206,7 +228,7 @@
               >소개</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">About</p>
               </li>
               <li class="mt-2 inline-block mr-2">

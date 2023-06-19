@@ -3,14 +3,15 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const db = require("../../config/db");
+const moment = require("moment-timezone");
 
 // url에 대한 페이지 처리 로직을 담당하는 핸들러 함수
 const urlHandler = (req, res, url) => {
   const is_logined = req.session.is_logined;
-  console.log(url);
+  const url_address = url;
 
   // url에 해당하는 페이지 처리 로직
-  const query = `SELECT results 
+  const query = `SELECT results, DATE_FORMAT(date, "%Y-%m-%d %H:%i:%s") AS formattedDate
   FROM results_info 
   WHERE id = '${req.session.nickname}' 
   AND url = '${url}' 
@@ -31,6 +32,9 @@ const urlHandler = (req, res, url) => {
     }
 
     // 첫 번째 행의 결과
+    const formattedDate1 = moment(results[0].formattedDate).format(
+      "YYYY년 MM월 DD일"
+    );
     const jsonData1 = JSON.parse(results[0].results);
     const {
       AE: AE1,
@@ -56,6 +60,7 @@ const urlHandler = (req, res, url) => {
     } = jsonData1;
 
     // 두 번째 행의 결과
+    let formattedDate2 = null;
     let jsonData2 = null;
     let AE2,
       BA2,
@@ -101,6 +106,9 @@ const urlHandler = (req, res, url) => {
         XML_XPATH: XML_XPATH2,
         XSS_Stored: XSS_Stored2,
       } = jsonData2);
+      formattedDate2 = moment(results[1].formattedDate).format(
+        "YYYY년 MM월 DD일"
+      );
     }
 
     console.log(jsonData1);
@@ -118,6 +126,9 @@ const urlHandler = (req, res, url) => {
 
       res.render("home/result2", {
         is_logined: is_logined,
+        url_address,
+        formattedDate1,
+        formattedDate2,
         scripts: scripts,
         AE1,
         BA1,

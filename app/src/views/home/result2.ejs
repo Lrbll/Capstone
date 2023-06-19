@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>noweakness</title>
+    <title>Hook</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap");
@@ -32,11 +32,7 @@
           class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto"
         >
           <a href="/" class="flex items-center">
-            <!-- <img src="./images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Logo" /> -->
-            <span
-              class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-              >noweakness</span
-            >
+            <img src="/img/Hook_logo.png" class="h-8 mx-2 sm:h-10" alt="Logo" />
           </a>
           <% if (is_logined) { %>
           <div class="flex items-center lg:order-2">
@@ -119,36 +115,43 @@
             class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
           ></div>
         </div>
+        <p class="text-center">직전이력이 없는 경우, 빈칸으로 표시됩니다</p>
+        <div class="px-9 text-justify mt-8 py-2 text-sm text-sm">
+          <p><span class="font-semibold">URL</span> : <%= url_address %></p>
+          <p>
+            <span class="font-semibold">점검일자</span> : <%= formattedDate1 %>
+          </p>
+        </div>
         <div class="flex flex-col">
           <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
             <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
               <div class="overflow-hidden">
-                <table class="min-w-full">
+                <table class="min-w-full border-2 border-gray-200">
                   <thead class="bg-white border-b">
                     <tr>
                       <th
                         scope="col"
                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        번호
+                        <span class="font-semibold">번호</span>
                       </th>
                       <th
                         scope="col"
                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        항목
+                        <span class="font-semibold">항목</span>
                       </th>
                       <th
                         scope="col"
                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        직전 이력
+                        <span class="font-semibold">직전 이력</span>
                       </th>
                       <th
                         scope="col"
                         class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                       >
-                        현재 이력
+                        <span class="font-semibold">현재 이력</span>
                       </th>
                     </tr>
                   </thead>
@@ -633,7 +636,7 @@
               class="text-green-700 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
               href="#"
             >
-              noweakness
+              Hook
             </a>
           </div>
           <div class="flex-1">
@@ -643,10 +646,10 @@
               >진단서비스</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">진단도구</p>
               </li>
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">웹서비스</p>
               </li>
             </ul>
@@ -658,7 +661,7 @@
               >점검항목</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">웹취약점</p>
               </li>
             </ul>
@@ -670,10 +673,10 @@
               >진단결과</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">진단결과</p>
               </li>
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">대응방안</p>
               </li>
             </ul>
@@ -685,10 +688,10 @@
               >소개</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">About</p>
               </li>
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">Project</p>
               </li>
             </ul>

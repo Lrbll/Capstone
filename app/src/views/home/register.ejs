@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>noweakness</title>
+    <title>Hook</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap");
@@ -21,20 +21,16 @@
           class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto"
         >
           <a href="/" class="flex items-center">
-            <!-- <img src="./images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Logo" /> -->
-            <span
-              class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-              >noweakness</span
-            >
+            <img src="/img/Hook_logo.png" class="h-8 mx-2 sm:h-10" alt="Logo" />
           </a>
         </div>
       </nav>
     </header>
 
     <!-- 섹션 영역 -->
-    <section class="bg-gray-50">
+    <section class="bg-gray-50 min-h-screen flex flex-col justify-center">
       <div
-        class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+        class="h-full w-3/4 flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0"
       >
         <div class="w-full bg-white rounded-lg shadow sm:max-w-md xl:p-0">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -57,14 +53,6 @@
                   placeholder="아이디"
                 />
               </div>
-              <!-- <div>
-                <input
-                  type="text"
-                  name="name"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="이름"
-                />
-              </div> -->
               <div>
                 <input
                   type="password"
@@ -95,15 +83,22 @@
               >
                 회원 가입
               </button>
-              <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                이미 계정이 있으신가요?
-                <a
-                  href="/auth/login"
-                  class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  >로그인</a
-                >
-              </p>
             </form>
+            <a href="/auth/kakao"
+              ><button>
+                <img
+                  src="/img/kakao_button.png"
+                  class="w-3/4 mt-5 hover:brightness-75"
+                /></button
+            ></a>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              이미 계정이 있으신가요?
+              <a
+                href="/auth/login"
+                class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                >로그인</a
+              >
+            </p>
           </div>
         </div>
       </div>

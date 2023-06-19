@@ -1,6 +1,7 @@
 "use strict";
 
-var authCheck = require("../../../src/public/js/home/authCheck.js");
+let db = require("../../config/db");
+let authCheck = require("../../../src/public/js/home/authCheck.js");
 
 const output = {
   login: (req, res) => {
@@ -16,8 +17,6 @@ const output = {
     res.render("home/register");
   },
 };
-
-let db = require("../../config/db");
 
 const process = {
   login: (req, res) => {
@@ -100,7 +99,7 @@ const process = {
 
   confirmLogin: (req, res, next) => {
     if (authCheck.isOwner(req, res)) {
-      // 로그인 안되어있으면 로그인 페이지로 이동시킴
+      // 로그인 되어있으면 로그아웃 페이지로 이동시킴
       res.redirect("/auth/logout");
       return false;
     } else {

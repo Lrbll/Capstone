@@ -38,88 +38,12 @@ const output = {
       const scripts = JSON.parse(data);
       res.render("home/list", { scripts: scripts, is_logined: is_logined });
     });
-    // res.render("home/list", { is_logined: is_logined });
   },
 
   info: (req, res) => {
     const is_logined = req.session.is_logined;
     res.render("home/info", { is_logined: is_logined });
   },
-
-  // result: (req, res) => {
-  //   const is_logined = req.session.is_logined;
-
-  //   // DB에서 진단도구 결과 가져오기
-  //   const query = "SELECT results FROM json_db";
-  //   db.mysql.query(query, (err, results) => {
-  //     if (err) {
-  //       console.error("Error querying the database:", err);
-  //       res.status(500).send("Internal Server Error");
-  //       return;
-  //     }
-
-  //     const jsonData = JSON.parse(results[0].results);
-  //     const {
-  //       AE,
-  //       BA,
-  //       BF,
-  //       BS,
-  //       DL,
-  //       SF,
-  //       SM,
-  //       DOR,
-  //       RFA,
-  //       XSS,
-  //       Base,
-  //       CSRF,
-  //       LDAP,
-  //       Cookie,
-  //       PHP_CI,
-  //       Redirect,
-  //       SI_Login,
-  //       SI_Search,
-  //       XML_XPATH,
-  //       XSS_Stored,
-  //     } = jsonData;
-  //     console.log(jsonData);
-
-  //     // 파일에서 점검항목 info 가져오기
-  //     fs.readFile("src/scripts_info/scripts.json", "utf8", (err, data) => {
-  //       if (err) {
-  //         console.error(err);
-  //         res.status(500).send("Error reading JSON file");
-  //         return;
-  //       }
-
-  //       const scripts = JSON.parse(data);
-
-  //       res.render("home/result", {
-  //         is_logined: is_logined,
-  //         scripts: scripts,
-  //         AE,
-  //         BA,
-  //         BF,
-  //         BS,
-  //         DL,
-  //         SF,
-  //         SM,
-  //         DOR,
-  //         RFA,
-  //         XSS,
-  //         Base,
-  //         CSRF,
-  //         LDAP,
-  //         Cookie,
-  //         PHP_CI,
-  //         Redirect,
-  //         SI_Login,
-  //         SI_Search,
-  //         XML_XPATH,
-  //         XSS_Stored,
-  //       });
-  //     });
-  //   });
-  // },
 };
 
 const process = {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>noweakness</title>
+    <title>Hook</title>
     <script src="/js/home/authCheck.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -33,14 +33,10 @@
           class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto"
         >
           <a href="/" class="flex items-center">
-            <!-- <img src="./images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Logo" /> -->
-            <span
-              class="self-center text-xl font-semibold whitespace-nowrap text-black"
-              >noweakness</span
-            >
+            <img src="img/Hook_logo.png" class="h-8 mx-2 sm:h-10" alt="Logo" />
           </a>
           <% if (is_logined) { %>
-          <div class="flex items-center lg:order-2">
+          <div class="flex items-center lg:order-2 order-last">
             <a
               href="/auth/logout"
               class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-xs shadow-md px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0"
@@ -128,7 +124,7 @@
             웹 취약점 진단
           </button>
           <p class="leading-normal text-2xl mb-8">
-            noweakness가 이메일로 결과를 보내드릴게요
+            진단결과와 대응방안까지 확인하세요
           </p>
         </div>
         <!--Right Col-->
@@ -178,7 +174,6 @@
     </div>
 
     <!-- 점검항목 영역 -->
-    <!-- owasp10으로 바꿀까 싶음 -->
     <section class="bg-white border-b py-8">
       <div class="container max-w-5xl mx-auto m-8">
         <h2
@@ -501,7 +496,7 @@
               class="text-green-700 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
               href="#"
             >
-              noweakness
+              Hook
             </a>
           </div>
           <div class="flex-1">
@@ -511,10 +506,10 @@
               >진단서비스</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">진단도구</p>
               </li>
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">웹서비스</p>
               </li>
             </ul>
@@ -526,7 +521,7 @@
               >점검항목</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">웹취약점</p>
               </li>
             </ul>
@@ -538,10 +533,10 @@
               >진단결과</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">진단결과</p>
               </li>
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">대응방안</p>
               </li>
             </ul>
@@ -553,10 +548,10 @@
               >소개</a
             >
             <ul class="list-reset mb-6">
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">About</p>
               </li>
-              <li class="mt-2 inline-block mr-2">
+              <li class="mt-2 inline-block mr-2 md:block md:ml-0">
                 <p class="text-gray-500">Project</p>
               </li>
             </ul>
