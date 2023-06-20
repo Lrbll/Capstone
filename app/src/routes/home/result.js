@@ -33,7 +33,7 @@ const urlHandler = (req, res, url) => {
 
     // 첫 번째 행의 결과
     const formattedDate1 = moment(results[0].formattedDate).format(
-      "YYYY년 MM월 DD일"
+      "YYYY-MM-DD"
     );
     const jsonData1 = JSON.parse(results[0].results);
     const {
@@ -58,6 +58,12 @@ const urlHandler = (req, res, url) => {
       XML_XPATH: XML_XPATH1,
       XSS_Stored: XSS_Stored1,
     } = jsonData1;
+
+    const riskKeys = Object.keys(jsonData1).filter(
+      (key) => jsonData1[key] === "risk"
+    );
+
+    console.log(riskKeys);
 
     // 두 번째 행의 결과
     let formattedDate2 = null;
@@ -106,9 +112,7 @@ const urlHandler = (req, res, url) => {
         XML_XPATH: XML_XPATH2,
         XSS_Stored: XSS_Stored2,
       } = jsonData2);
-      formattedDate2 = moment(results[1].formattedDate).format(
-        "YYYY년 MM월 DD일"
-      );
+      formattedDate2 = moment(results[1].formattedDate).format("YYYY-MM-DD");
     }
 
     console.log(jsonData1);
@@ -128,8 +132,8 @@ const urlHandler = (req, res, url) => {
         is_logined: is_logined,
         url_address,
         formattedDate1,
-        formattedDate2,
         scripts: scripts,
+        riskKeys,
         AE1,
         BA1,
         BF1,

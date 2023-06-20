@@ -7,7 +7,6 @@ const ctrl = require("./auth.ctrl");
 
 router.get("/login", ctrl.process.confirmLogin);
 router.get("/login", ctrl.output.login);
-router.get("/logout", ctrl.output.logout);
 router.get("/register", ctrl.output.register);
 
 router.post("/login", ctrl.process.login);
