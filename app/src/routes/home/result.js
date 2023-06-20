@@ -63,8 +63,6 @@ const urlHandler = (req, res, url) => {
       (key) => jsonData1[key] === "risk"
     );
 
-    console.log(riskKeys);
-
     // 두 번째 행의 결과
     let formattedDate2 = null;
     let jsonData2 = null;
@@ -114,9 +112,6 @@ const urlHandler = (req, res, url) => {
       } = jsonData2);
       formattedDate2 = moment(results[1].formattedDate).format("YYYY-MM-DD");
     }
-
-    console.log(jsonData1);
-    console.log(jsonData2);
 
     // 파일에서 점검항목 info 가져오기
     fs.readFile("src/scripts_info/scripts.json", "utf8", (err, data) => {

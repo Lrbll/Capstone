@@ -17,10 +17,6 @@
       .gradient {
         background: linear-gradient(90deg, #0b952b9e 0%, #d8da51 100%);
       }
-      .a4 {
-        width: 210mm;
-        height: 297mm;
-      }
       .page-break {
         page-break-inside: avoid;
       }
@@ -643,6 +639,11 @@
         >
           대응방안
         </h2>
+        <% if (riskKeys.length === 0) { %>
+        <p class="px-9 text-center mt-8 py-2 text-sm">
+          취약한 항목이 존재하지 않습니다.
+        </p>
+        <% } else { %>
         <div class="px-9 text-justify mt-8 py-2 text-sm">
           <p>
             20개 항목 중
@@ -692,6 +693,7 @@
             </div>
           </div>
         </div>
+        <% } %>
       </div>
     </section>
     <!--Footer-->
