@@ -44,7 +44,6 @@ def login(url):
 
 def SI_Login(url):  # SQL Injection
     print("\n[SQL Injection(login)]")
-    global si_login_result  # 결과값 넣을 변수
     global si_login_json
 
     urls = url + "/sqli_3.php"
@@ -78,17 +77,14 @@ def SI_Login(url):  # SQL Injection
     if count > 0:
         print("성공한 로그인 횟수 :", count)
         print("SQL Injection(Login) 취약")
-        si_login_result = "'risk'"
         si_login_json = "risk"
     else:
         print("SQL Injection(Login) 안전")
-        si_login_result = "'safe'"
         si_login_json = "safe"
 
 
 def SI_Search(url):  # SQL Injection(Search)
     print("\n[SQL Injection(Search)]")
-    global si_search_result
     global si_search_json
 
     urls = url + "/sqli_1.php"
@@ -125,17 +121,14 @@ def SI_Search(url):  # SQL Injection(Search)
     if count > 0:
         print("성공한 검색 횟수 :", count)
         print("SQL Injection(Search) 취약")
-        si_search_result = "'risk'"
         si_search_json = "risk"
     else:
         print("SQL Injection(Search) 안전")
-        si_search_result = "'safe'"
         si_search_json = "safe"
 
 
 def PHP_CI(url):  # PHP CODE Injection
     print(" \n[PHP CODE Injection]")
-    global php_ci_result
     global php_ci_json
 
     urls = url + "/phpi.php"
@@ -157,17 +150,14 @@ def PHP_CI(url):  # PHP CODE Injection
         # print(ls.text)
         if "root" in ls.text:  # 출력된 내용에 root가 있다면
             print("PHP CODE Injection 취약")  # 취약
-            php_ci_result = "'risk'"
             php_ci_json = "risk"
         else:
             print("PHP CODE Injection 안전")
-            php_ci_result = "'safe'"
             php_ci_json = "safe"
 
 
 def AE(url):  # 관리자 페이지 노출
     print(" \n[관리자 페이지 노출]")
-    global ae_result
     global ae_json
 
     count = 0
@@ -183,7 +173,7 @@ def AE(url):  # 관리자 페이지 노출
     for link in ad_p:
         try:
             res = urlopen(url + link)
-            if res.status == 207:  # res.status : http 응답코드 가져오기
+            if res.status == 200:  # res.status : http 응답코드 가져오기
                 # #getcode() : http 응답상태 가져오기도 가능함, 하지만 얘는 주로 오류 상태코드를 가져올 때 사용
                 print(url + link, "는 취약합니다.")
                 count += 1
@@ -191,21 +181,18 @@ def AE(url):  # 관리자 페이지 노출
             HTTPError
         ) as e:  # (404)에러를 위한 except 문  #HTTPError : 페이지를 찾을 수 없거나, URL 해석에서 에러가 생긴 경우
             code = e.getcode()  # getcode() : http 응답상태 가져오기
-            if code != 207:  # 404 에러 발생 시 continue
+            if code != 200:  # 404 에러 발생 시 continue
                 continue
     if count > 0:
         print("관리자페이지 노출 취약")
-        ae_result = "'risk'"
         ae_json = "risk"
     else:
         print("관리자페이지 노출 안전")
-        ae_result = "'safe'"
         ae_json = "safe"
 
 
 def DL(url):  # 디렉터리 리스팅
     print("\n[디렉터리 리스팅]")
-    global dl_result
     global dl_json
 
     count = 0
@@ -230,17 +217,14 @@ def DL(url):  # 디렉터리 리스팅
 
     if count > 0:
         print("디렉터리 리스팅 취약")
-        dl_result = "'risk'"
         dl_json = "risk"
     else:
         print("디렉터리 리스팅 안전")
-        dl_result = "'safe'"
         dl_json = "safe"
 
 
 def XSS_Stored(url):  # Stored XSS
     print("\n[Stored XSS]")
-    global xss_stored_result
     global xss_stored_json
 
     re = url + "/reset.php"
@@ -268,19 +252,16 @@ def XSS_Stored(url):  # Stored XSS
         if "PHPSESSID=" in alert2.text:  # 알림창에 알림이 뜬다면
             print("Stored XSS 취약")
             time.sleep(1)
-            xss_stored_result = "'risk'"
             xss_stored_json = "risk"
             alert2.accept()  # 경고창 닫기
 
     else:
         print("Stored XSS 안전")
-        xss_stored_result = "'safe'"
         xss_stored_json = "safe"
 
 
 def SF(url):  # 세션 고정 취약점
     print("\n[세션 고정 취약점]")
-    global sf_result
     global sf_json
 
     driver.get(url)
@@ -303,17 +284,14 @@ def SF(url):  # 세션 고정 취약점
 
     if cookie_s1 == cookie_s2:
         print("세션 고정 취약")
-        sf_result = "'risk'"
         sf_json = "risk"
     else:
         print("세션 고정 안전")
-        sf_result = "'safe'"
         sf_json = "safe"
 
 
 def Cookie(url):
     print("\n[Cookie 변조 취약점]")
-    global cookie_result
     global cookie_json
 
     # 관리자 계정으로 로그인
@@ -372,11 +350,9 @@ def Cookie(url):
     # bee로 바뀌었다면 취약, 아니라면 안전
     if "Bee" in bee:
         print("Cookie 변조 취약")
-        cookie_result = "'risk'"
         cookie_json = "risk"
     else:
         print("Cookie 변조 안전")
-        cookie_result = "'safe'"
         cookie_json = "safe"
 
     # 새창 닫기
@@ -387,7 +363,6 @@ def Cookie(url):
 
 def Redirect(url):
     print("\n[Redirect 취약점]")
-    global redirect_result
     global redirect_json
 
     url = url + "/unvalidated_redir_fwd_1.php"
@@ -395,7 +370,7 @@ def Redirect(url):
     driver.get(url)
     time.sleep(1)
     selectbox = Select(driver.find_element(By.TAG_NAME, "select"))
-    selectbox.select_by_index(0)  # 첫번째 인덱스값 선택
+    selectbox.select_by_index(1)  # 첫번째 인덱스값 선택
     driver.find_element(By.TAG_NAME, "button").send_keys(Keys.ENTER)
     time.sleep(2)
 
@@ -410,18 +385,14 @@ def Redirect(url):
     for option in options:
         value = option.get_attribute("value")  # get_attribute : 특정 요소의 값 반환
         # 속성값을 value에 저장  #주소들이 저장됨
-        if value != "http://192.168.75.128/bWAPP/user_extra.php":
+        if value != "http://192.168.75.128/bWAPPuser_extra.php":
             driver.execute_script(
                 "arguments[0].value = 'http://192.168.75.128/bWAPP/user_extra.php'",
                 option,
             )
-            # option 변수는 execute_script 메소드의 첫 번째 인수로 전달되어 자바스크립트 코드에서 arguments[0]로 참조
-            # 따라서 option 변수가 가리키는 페이지 요소의 값이 '중부대 주소'로 설정
-            # option은 arguments[0] = 중부대 주소 로 참조
-            # option 변수가 가리키는 페이지 요소의 값을 중부대 주소로 설정
 
     selectbox = Select(driver.find_element(By.TAG_NAME, "select"))
-    selectbox.select_by_index(0)  # 첫번째 인덱스값 선택
+    selectbox.select_by_index(1)  # 첫번째 인덱스값 선택
     driver.find_element(By.TAG_NAME, "button").send_keys(Keys.ENTER)
     time.sleep(2)
     current_url = driver.current_url
@@ -430,17 +401,14 @@ def Redirect(url):
         current_url == "http://192.168.75.128/bWAPP/user_extra.php"
     ):  # 현재 페이지가 중부대학교 졸업작품 페이지면 취약
         print("Redirect 취약")
-        redirect_result = "'risk'"
         redirect_json = "risk"
     else:
         print("Redirect 안전")
-        redirect_result = "'safe'"
         redirect_json = "safe"
 
 
 def CSRF(url):  # CSRF
     print("\n[CSRF]")
-    global csrf_result
     global csrf_json
 
     logout = url + "/logout.php"
@@ -450,9 +418,9 @@ def CSRF(url):  # CSRF
     create = url + "/user_new.php"  # 사용자 생성 #student14
     driver.get(create)
     id = driver.find_element(By.ID, "login")
-    id.send_keys("student207")  # 변경!!
+    id.send_keys("student305")  # 변경!!
     email = driver.find_element(By.ID, "email")
-    email.send_keys("student207@new.com")  # 변경!!
+    email.send_keys("student305@new.com")  # 변경!!
     passwd = driver.find_element(By.ID, "password")
     passwd.send_keys("test")
     passwd_conf = driver.find_element(By.ID, "password_conf")
@@ -464,7 +432,7 @@ def CSRF(url):  # CSRF
 
     driver.get(url + "/login")  # 만든 계정으로 로그인 #student14 로그인
     log_in = driver.find_element(By.ID, "login")
-    log_in.send_keys("student207")  # 변경!!
+    log_in.send_keys("student305")  # 변경!!
     passwd = driver.find_element(By.ID, "password")
     passwd.send_keys("test")
     driver.find_element(By.TAG_NAME, "button").send_keys(Keys.ENTER)
@@ -488,10 +456,6 @@ def CSRF(url):  # CSRF
         blog = url + "/htmli_stored.php"  # 블로그 글쓰기 창으로 이동
         driver.get(blog)
         attack = f'<img src="{current_url}" width="0" height="0">'  # f 문자열 이용 #포매팅할 위치에 있는 변수를 {}로 감싸기
-        # <img>태그는 html 문서에서 이미지를 정의할 때 사용
-        # <img>요소로 정의된 이미지는 html 문서에 이미지가 링크되는 형태
-        # 따라서 <img> 태그의 src 속성을 이용해 악의적인 url을 불러옴
-        # width="0" height="0"로 크기를 숨겨 내용이 안보이게 입력함
 
         new_str = attack.replace("testing", "success")  # 비밀번호를 success로 변경, 공격구문
 
@@ -503,7 +467,7 @@ def CSRF(url):  # CSRF
         check = url + "/sqli_16.php"  # 비밀번호 변경 확인
         driver.get(check)
         input_box = driver.find_element(By.ID, "login")
-        input_box.send_keys("student207")  # 변경!!!
+        input_box.send_keys("student305")  # 변경!!!
         input_box2 = driver.find_element(By.ID, "password")
         input_box2.send_keys("testing")
         driver.find_element(By.TAG_NAME, "button").send_keys(Keys.ENTER)
@@ -517,10 +481,8 @@ def CSRF(url):  # CSRF
 
     if "Invalid" in val:
         print("CSRF 취약")
-        csrf_result = "'risk'"
         csrf_json = "risk"
     else:
-        csrf_result = "'safe'"
         csrf_json = "safe"
         print("CSRF 안전")
 
@@ -530,7 +492,6 @@ def CSRF(url):  # CSRF
 # XML/XPath Injection
 def XML_XPATH(url):
     print("\n[XML/XPath 인젝션]")
-    global XX_result
     global XX_json
     count = 0
 
@@ -545,18 +506,15 @@ def XML_XPATH(url):
 
     if count > 0:
         print(count, "취약")
-        XX_result = "'risk'"
         XX_json = "risk"
     else:
         print("안전")
-        XX_result = "'safe'"
         XX_json = "safe"
 
 
 # 약한 문자열 강도
 def BF(url):
     print("\n[약한 문자열 강도]")
-    global BF_result
     global BF_json
     count = 0
 
@@ -600,17 +558,14 @@ def BF(url):
 
     if count > 0:
         print(count, "취약")
-        BF_result = "'risk'"
         BF_json = "risk"
     else:
-        BF_result = "'safe'"
         BF_json = "safe"
 
 
 # Broken Auth - Insecure Login Forms
 def BA(url):
     print("\n[Broken Auth - Insecure Login Forms]")
-    global BA_result
     global BA_json
     count = 0
 
@@ -636,18 +591,15 @@ def BA(url):
 
     if count > 0:
         print("취약")
-        BA_result = "'risk'"
         BA_json = "risk"
     else:
         print("안전")
-        BA_result = "'safe'"
         BA_json = "safe"
 
 
 # Insecure DOR(Change Secret)
 def DOR(url):
     print("\n[Insecure DOR(Change Secret)]")
-    global DOR_result
     global DOR_json
 
     count = 0
@@ -656,9 +608,9 @@ def DOR(url):
 
     driver.get(create)
     id = driver.find_element(By.ID, "login")
-    id.send_keys("user207")  # 변경!
+    id.send_keys("user305")  # 변경!
     email = driver.find_element(By.ID, "email")
-    email.send_keys("user207@a.com")  # 변경!
+    email.send_keys("user305@a.com")  # 변경!
     passwd = driver.find_element(By.ID, "password")
     passwd.send_keys("bbb")
     passwd_conf = driver.find_element(By.ID, "password_conf")
@@ -679,7 +631,7 @@ def DOR(url):
                 input_element.get_attribute("outerHTML")
             )  # get_attribute : 특정 요소의 값 반환
             driver.execute_script(
-                "arguments[0].value = 'user207'", input_element
+                "arguments[0].value = 'user305'", input_element
             )  # 변경!
             print(
                 input_element.get_attribute("outerHTML")
@@ -694,7 +646,7 @@ def DOR(url):
             driver.get(check)
 
             input_box = driver.find_element(By.ID, "login")  # 로그인
-            input_box.send_keys("user207")  # 변경!
+            input_box.send_keys("user305")  # 변경!
             input_box2 = driver.find_element(By.ID, "password")
             input_box2.send_keys("bbb")
             driver.find_element(By.TAG_NAME, "button").send_keys(Keys.ENTER)
@@ -707,18 +659,15 @@ def DOR(url):
                     count += 1
     if count == 0:
         print(count, "취약")
-        DOR_result = "'risk'"
         DOR_json = "risk"
     else:
         print("안전")
-        DOR_result = "'safe'"
         DOR_json = "safe"
 
 
 # Base64 Encoding(Secret)
 def Base(url):
     print("\n[Base64 Encoding(Secret))]")
-    global Base_result
     global Base_json
     count = 0
 
@@ -739,18 +688,15 @@ def Base(url):
     str = Base_decoded.decode("UTF-8")
     if str == "Any bugs?":
         print("취약")
-        Base_result = "'risk'"
         Base_json = "risk"
     else:
         print("안전")
-        Base_result = "'safe'"
         Base_json = "safe"
 
 
 # Restrict Folder Access  뭔지 알기
 def RFA(url):
     print("\n[Restrict Folder Access]")
-    global RFA_result
     global RFA_json
     count = 0
 
@@ -778,11 +724,9 @@ def RFA(url):
 
         if original_url == new_url:  # 웹페이지가 바뀌었는지 확인 - 원래꺼랑 같으면 취약 다르면 안전
             print("안바뀜-취약")
-            RFA_result = "'risk'"
             RFA_json = "risk"
         else:
             print("바뀜-안전")
-            RFA_result = "'safe'"
             RFA_json = "safe"
 
     except:
@@ -796,7 +740,6 @@ def RFA(url):
 # Old, Backup & Unreferenced Files  코드수정
 def SM(url):
     print("\n[Security Misconfiguration]")
-    global SM_result
     global SM_json
     count = 0
 
@@ -807,18 +750,15 @@ def SM(url):
 
     if "server" in source_code and "username" in source_code:
         print("취약")
-        SM_result = "'risk'"
         SM_json = "risk"
     else:
         print("안전")
-        SM_result = "'safe'"
         SM_json = "safe"
 
 
 # LDAP Injection
 def LDAP(url):  # 구문의미 알기
     print("\n[LDAP Injection]")
-    global LDAP_result
     global LDAP_json
     count = 0
 
@@ -851,18 +791,15 @@ def LDAP(url):  # 구문의미 알기
                 count += 1
     if count > 0:
         print("취약")
-        LDAP_result = "'risk'"
         LDAP_json = "risk"
     else:
         print("안전")
-        LDAP_result = "'safe'"
         LDAP_json = "safe"
 
 
 # Blind SQL
 def BS(url):
     print("\n[Blind SQL]")
-    global BS_result
     global BS_json
     count = 0
 
@@ -920,18 +857,15 @@ def BS(url):
 
     if count > 0:
         print("취약")
-        BS_result = "'risk'"
         BS_json = "risk"
     else:
         print("안전")
-        BS_result = "'safe'"
         BS_json = "safe"
 
 
 # XSS
 def XSS(url):
     print("\n[XSS]")
-    global XSS_result
     global XSS_json
     count = 0
 
@@ -961,45 +895,10 @@ def XSS(url):
 
     if count > 0:
         print("XSS 취약")
-        XSS_result = "'risk'"
         XSS_json = "risk"
     else:
         print("XSS 안전")
-        XSS_result = "'safe'"
         XSS_json = "safe"
-
-
-def db(url):
-    url = f"'{url}'"
-    now = f"'{datetime.now()}'"
-
-    conn = pymysql.connect(
-        host="127.0.0.1", user="root", password="283400aa", database="dev"
-    )
-
-    # 커서 생성
-    cursor = conn.cursor()
-
-    # SELECT 명령어 실행
-    # cursor.execute("delete from tools;")
-    cursor.execute(
-        f"INSERT INTO tools VALUES ({url}, {si_login_result}, {si_search_result}, {php_ci_result}, {ae_result}, {dl_result}, {xss_stored_result}, {sf_result}, {cookie_result}, {redirect_result}, {csrf_result}, {BF_result}, {LDAP_result}, {XX_result}, {BA_result}, {DOR_result}, {Base_result}, {RFA_result}, {XSS_result}, {SM_result}, {BS_result}, {now});"
-    )
-    cursor.execute("select * from tools;")
-
-    # result = cursor.fetchone()
-    row = cursor.fetchall()
-
-    conn.commit()
-    conn.close()
-
-    # print(result)
-    # 조회 결과 전부 출력
-
-    for i in row:
-        url = []
-        url = i
-        print(url)
 
 
 def json_web(user_id, url):
@@ -1041,7 +940,6 @@ def json_web(user_id, url):
     )
 
     cursor = conn.cursor()
-    # cursor.execute(f"INSERT INTO json_db VALUES ({json_string});")
 
     cursor.execute(
         f"select MAX(num) from results_info where id = {user_id} && url = {url};"
@@ -1058,8 +956,6 @@ def json_web(user_id, url):
     conn.commit()
 
     row2 = cursor.fetchall()
-    # print(result)
-    # 조회 결과 전부 출력
 
     for i in row2:
         res = i
@@ -1093,12 +989,8 @@ def capstone(url):
 
 
 if __name__ == "__main__":
-    # url = 'http://192.168.75.128//bWAPP' #윈도우에서 수정해야함
     user_id = sys.argv[1]
     url = sys.argv[2]
-    # 이제 url 변수에 JavaScript에서 전달한 URL 값이 저장되어 있습니다.
-    # 이 값을 사용하여 파이썬 코드를 실행시킬 수 있습니다.
     capstone(url)
-    # db(url)
     json_web(user_id, url)
     driver.quit()
