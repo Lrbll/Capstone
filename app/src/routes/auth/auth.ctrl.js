@@ -164,36 +164,30 @@ const process = {
 
   deleteAccont: (req, res) => {
     // 현재 로그인한 사용자의 세션 정보 가져오기
-    var id = req.session.nickname;
+    const id = req.session.nickname;
 
     if (id) {
-      // 사용자에게 확인 메시지 보내기
-      res.send(`
-        <script type="text/javascript">
-          var confirmDelete = confirm("정말로 탈퇴하시겠습니까?");
-          if (confirmDelete) {
-            // 회원 데이터 삭제 로직
-            db.mysql.query(
-              'DELETE FROM users WHERE id = ?',
-              [id],
-              function (error, result) {
-                if (error) throw error;
-
-                // 로그인 데이터 파기 (세션 삭제)
-                req.session.destroy(function (err) {
-                  if (err) throw err;
-                  
-                  alert("회원 탈퇴가 완료되었습니다.");
-                  window.location.href = "/";
-                });
-              }
-            );
+      // 회원 데이터 삭제 로직
+      db.mysql.query(
+        "DELETE FROM users WHERE id = ?",
+        [id],
+        (error, result) => {
+          if (error) {
+            console.error(error);
+            res.redirect("/"); // 에러 발생 시 인덱스 페이지로 리다이렉션
           } else {
-            // 회원 탈퇴 취소
-            window.location.href = "/";
+            // 로그인 데이터 파기 (세션 삭제)
+            req.session.destroy((err) => {
+              if (err) {
+                console.error(err);
+                res.redirect("/"); // 에러 발생 시 인덱스 페이지로 리다이렉션
+              } else {
+                res.redirect("/"); // 회원 탈퇴 완료 시 인덱스 페이지로 리다이렉션
+              }
+            });
           }
-        </script>
-      `);
+        }
+      );
     }
   },
 };

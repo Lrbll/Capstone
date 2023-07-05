@@ -15,6 +15,7 @@ router.post("/login", ctrl.process.login);
 router.post("/logout", ctrl.process.logout);
 router.post("/register", ctrl.process.register);
 router.post("/mypage", ctrl.process.newPassword);
-router.post("/delete", ctrl.process.deleteAccont);
+
+router.post("/deleteAccount", ctrl.process.deleteAccont);
 
 module.exports = router;
